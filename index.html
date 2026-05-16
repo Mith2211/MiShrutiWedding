@@ -354,32 +354,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
 .scroll-arrow { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); margin: 0 auto; animation: scrollPulse 1.5s ease-in-out infinite; }
 @keyframes scrollPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-/* ── STATS STRIP ── */
-.stats-strip {
-  display: flex; justify-content: center;
-  background: var(--dark2);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  position: relative; z-index: 2;
-}
-.stat-item {
-  flex: 1; max-width: 170px;
-  padding: 20px 10px; text-align: center;
-  border-right: 1px solid var(--border);
-  transition: background 0.25s;
-}
-.stat-item:last-child { border-right: none; }
-.stat-item:hover { background: rgba(201,169,110,0.05); }
-.stat-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic; font-size: 32px;
-  color: var(--gold); line-height: 1;
-  margin-bottom: 4px;
-}
-.stat-lbl {
-  font-family: 'Tiro Devanagari Marathi', serif;
-  font-size: 11px; color: var(--ink-soft);
-}
+
 
 /* ── NAV ── */
 .nav-wrap {
@@ -767,7 +742,6 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
   .corner-frame { width: 36px; height: 36px; }
   .fn-header { padding: 14px 16px; gap: 10px; }
   .fn-date-tag { display: none; }
-  .stat-num { font-size: 24px; }
   .section-intro { padding: 18px 20px; gap: 14px; }
 }
 @media (max-width: 380px) {
@@ -802,7 +776,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
   </div>
   <p class="intro-marathi">शुभ विवाह · आठवणींचा खजिना</p>
   <h1 class="intro-title">Wedding<br><em style="font-style:italic;">Memories</em></h1>
-  <p class="intro-names">मिथिलेश <span class="intro-amp">&amp;</span> शृती</p>
+  <p class="intro-names">मिथिलेश <span class="intro-amp">&amp;</span> श्रृती</p>
   <p class="intro-date">२६ एप्रिल २०२६ · खामगाव · महाराष्ट्र</p>
   <button class="intro-btn" onclick="enterSite()"><span>आठवणी पहा →</span></button>
   <div class="intro-flowers">🪔 ✦ 🌸 ✦ 🪔</div>
@@ -832,12 +806,11 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
       <div class="h-line"></div>
     </div>
     <p class="h-eyebrow">A Collection of Precious Memories</p>
-    <p class="h-marathi">लग्नाचा आनंद · प्रेमाची गाथा</p>
     <h1 class="h-title">
-      <span class="line1">शुभ</span>
-      <span class="line2">विवाह</span>
+      <span class="line1">Wedding</span>
+      <span class="line2">Memories</span>
     </h1>
-    <p class="h-names">मिथिलेश <span class="h-amp">&amp;</span> शृती</p>
+    <p class="h-names">मिथिलेश <span class="h-amp">&amp;</span> श्रृती</p>
     <p class="h-tagline">सात जन्मांचे नाते · दोन जीव एक बंधन</p>
     <div class="h-date-row">
       <div class="h-date-line r"></div>
@@ -851,25 +824,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
   </div>
 </header>
 
-<!-- ─── STATS STRIP ─── -->
-<div class="stats-strip">
-  <div class="stat-item">
-    <div class="stat-num">१२</div>
-    <div class="stat-lbl">कार्यक्रम</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">१७</div>
-    <div class="stat-lbl">Albums & Reels</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">२</div>
-    <div class="stat-lbl">फोटोग्राफर</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">∞</div>
-    <div class="stat-lbl">आठवणी</div>
-  </div>
-</div>
+
 
 <!-- ─── NAV ─── -->
 <nav class="nav-wrap">
@@ -1274,7 +1229,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
         <span class="fn-num">12</span>
         <span class="fn-icon">🏡</span>
         <div class="fn-text">
-          <div class="fn-title">शृती अमरावती गृहप्रवेश</div>
+          <div class="fn-title">श्रृती अमरावती गृहप्रवेश</div>
           <span class="fn-sub">Griha Pravesh · Amravati</span>
         </div>
         <span class="fn-count">1 album</span>
@@ -1289,7 +1244,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
             <span class="card-badge badge-special">Griha Pravesh</span>
           </div>
           <div class="card-body">
-            <div class="card-title">शृती अमरावती गृहप्रवेश</div>
+            <div class="card-title">श्रृती अमरावती गृहप्रवेश</div>
             <span class="card-en">Shruti's Home Welcoming · Amravati</span>
             <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
           </div>
@@ -1364,7 +1319,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
       <div>
         <div class="s-label">Photographer · वधू पक्ष</div>
         <div class="s-name">वधू पक्षाचे फोटो</div>
-        <div class="s-note">शृती · Gallery येत आहे · Coming Soon</div>
+        <div class="s-note">श्रृती · Gallery येत आहे · Coming Soon</div>
       </div>
     </div>
     <div class="coming-soon reveal">
@@ -1392,7 +1347,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
   </div>
   <p class="f-marathi">आपल्या प्रेमाने आणि आशीर्वादाने धन्यवाद</p>
   <p class="f-en">Thank you for being part of our story</p>
-  <p class="f-date">मिथिलेश & शृती · २६ एप्रिल २०२६ · खामगाव · महाराष्ट्र</p>
+  <p class="f-date">मिथिलेश & श्रृती · २६ एप्रिल २०२६ · खामगाव · महाराष्ट्र</p>
 </footer>
 
 </div><!-- /site -->
@@ -1428,7 +1383,7 @@ function animRing() {
   requestAnimationFrame(animRing);
 }
 animRing();
-document.querySelectorAll('a, button, .nav-tab, .fn-header, .stat-item').forEach(el => {
+document.querySelectorAll('a, button, .nav-tab, .fn-header').forEach(el => {
   el.addEventListener('mouseenter', () => {
     cur.style.width = '20px'; cur.style.height = '20px';
     ring.style.width = '48px'; ring.style.height = '48px';
@@ -1461,48 +1416,137 @@ document.addEventListener('click', e => {
 });
 
 /* ══════════════════════════════════
-   PARTICLE CANVAS (gold dust)
+   FALLING PETALS + GOLD DUST CANVAS
 ══════════════════════════════════ */
 (function() {
   const canvas = document.getElementById('particle-canvas');
   const ctx = canvas.getContext('2d');
-  let W, H, particles = [];
+  let W, H;
+
   function resize() {
     W = canvas.width  = window.innerWidth;
     H = canvas.height = window.innerHeight;
   }
   resize();
   window.addEventListener('resize', resize);
-  class Particle {
-    constructor() { this.reset(); }
-    reset() {
-      this.x = Math.random() * W;
-      this.y = Math.random() * H;
-      this.vx = (Math.random() - 0.5) * 0.3;
-      this.vy = -0.2 - Math.random() * 0.4;
-      this.r  = 0.5 + Math.random() * 1.5;
-      this.life = 0;
-      this.maxLife = 150 + Math.random() * 200;
-      this.gold = Math.random() > 0.5;
-    }
-    update() {
-      this.x += this.vx; this.y += this.vy; this.life++;
-      if (this.life > this.maxLife || this.y < -10) this.reset();
-    }
-    draw() {
-      const a = Math.sin(this.life / this.maxLife * Math.PI) * 0.4;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-      ctx.fillStyle = this.gold
-        ? `rgba(201,169,110,${a})`
-        : `rgba(250,240,220,${a * 0.5})`;
-      ctx.fill();
-    }
+
+  /* ── Petal shape helper (bezier teardrop) ── */
+  function drawPetal(x, y, w, h, angle, color) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(angle);
+    ctx.beginPath();
+    ctx.moveTo(0, -h / 2);
+    ctx.bezierCurveTo( w / 2, -h / 4,  w / 2,  h / 4, 0,  h / 2);
+    ctx.bezierCurveTo(-w / 2,  h / 4, -w / 2, -h / 4, 0, -h / 2);
+    ctx.closePath();
+    ctx.fillStyle = color;
+    /* subtle inner vein */
+    ctx.fill();
+    ctx.strokeStyle = color.replace(/[\d.]+\)$/, '0.15)');
+    ctx.lineWidth = 0.4;
+    ctx.beginPath();
+    ctx.moveTo(0, -h / 2);
+    ctx.lineTo(0,  h / 2);
+    ctx.stroke();
+    ctx.restore();
   }
-  for (let i = 0; i < 80; i++) { const p = new Particle(); p.life = Math.random() * p.maxLife; particles.push(p); }
+
+  /* ── Petal palette  (clearly visible on dark bg) ── */
+  const PALETTES = [
+    /* Rose pinks */
+    { col: 'rgba(210,95,115,',  wMin: 10, hMin: 15, wRng: 12, hRng: 14 },
+    { col: 'rgba(235,130,150,', wMin: 8,  hMin: 12, wRng: 10, hRng: 12 },
+    { col: 'rgba(255,175,190,', wMin: 7,  hMin: 11, wRng: 9,  hRng: 11 },
+    { col: 'rgba(185,70,95,',   wMin: 9,  hMin: 14, wRng: 10, hRng: 12 },
+    /* Marigold golds */
+    { col: 'rgba(220,155,20,',  wMin: 7,  hMin: 10, wRng: 9,  hRng: 11 },
+    { col: 'rgba(245,185,45,',  wMin: 6,  hMin: 9,  wRng: 8,  hRng: 10 },
+    { col: 'rgba(200,130,10,',  wMin: 8,  hMin: 11, wRng: 9,  hRng: 11 },
+    /* Jasmine whites */
+    { col: 'rgba(248,242,220,', wMin: 5,  hMin: 8,  wRng: 6,  hRng: 8  },
+    { col: 'rgba(255,248,230,', wMin: 5,  hMin: 7,  wRng: 6,  hRng: 7  },
+  ];
+
+  /* ── Build petal pool ── */
+  const PETAL_COUNT = window.innerWidth < 500 ? 28 : 45;
+  const petals = [];
+
+  function makePetal(randomY) {
+    const p  = PALETTES[Math.floor(Math.random() * PALETTES.length)];
+    return {
+      x:     Math.random() * W,
+      y:     randomY ? Math.random() * H : -20 - Math.random() * 60,
+      vy:    0.38 + Math.random() * 0.72,
+      vx:    (Math.random() - 0.5) * 0.5,
+      rot:   Math.random() * Math.PI * 2,
+      rotV:  (Math.random() - 0.5) * 0.032,
+      w:     p.wMin + Math.random() * p.wRng,
+      h:     p.hMin + Math.random() * p.hRng,
+      sway:  Math.random() * Math.PI * 2,
+      swayS: 0.016 + Math.random() * 0.018,
+      swayA: 0.55  + Math.random() * 0.9,
+      col:   p.col,
+      alpha: 0.52 + Math.random() * 0.38,
+      life:  0,
+      maxL:  220 + Math.random() * 180,
+    };
+  }
+
+  for (let i = 0; i < PETAL_COUNT; i++) petals.push(makePetal(true));
+
+  /* ── Gold dust particles (secondary layer, smaller) ── */
+  const DUST_COUNT = 55;
+  const dust = [];
+  for (let i = 0; i < DUST_COUNT; i++) {
+    dust.push({
+      x: Math.random() * 2000, y: Math.random() * 1200,
+      vx: (Math.random() - 0.5) * 0.28,
+      vy: -0.14 - Math.random() * 0.32,
+      r:  0.6 + Math.random() * 1.6,
+      life: Math.random() * 220,
+      maxL: 130 + Math.random() * 180,
+      gold: Math.random() > 0.38,
+    });
+  }
+
+  /* ── Render loop ── */
   function loop() {
-    ctx.clearRect(0,0,W,H);
-    particles.forEach(p => { p.update(); p.draw(); });
+    /* Soft trail — lets petals leave a faint ghost */
+    ctx.fillStyle = 'rgba(10,8,6,0.16)';
+    ctx.fillRect(0, 0, W, H);
+
+    /* 1 — gold dust (back layer) */
+    dust.forEach(d => {
+      d.x += d.vx; d.y += d.vy; d.life++;
+      if (d.life > d.maxL || d.y < -6) {
+        d.x = Math.random() * W; d.y = H + 6; d.life = 0;
+      }
+      const a = Math.sin(d.life / d.maxL * Math.PI) * 0.55;
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+      ctx.fillStyle = d.gold ? `rgba(201,169,110,${a})` : `rgba(252,240,210,${a * 0.45})`;
+      ctx.fill();
+    });
+
+    /* 2 — petals (front layer) */
+    petals.forEach(p => {
+      p.sway  += p.swayS;
+      p.x     += p.vx + Math.sin(p.sway) * p.swayA;
+      p.y     += p.vy;
+      p.rot   += p.rotV;
+      p.life++;
+
+      /* fade in/out over lifetime */
+      const fade = Math.min(1, Math.sin(p.life / p.maxL * Math.PI) * 1.4);
+
+      if (p.y > H + 24 || p.life > p.maxL) {
+        Object.assign(p, makePetal(false));
+      }
+
+      drawPetal(p.x, p.y, p.w, p.h, p.rot, p.col + (p.alpha * fade).toFixed(2) + ')');
+    });
+
     requestAnimationFrame(loop);
   }
   loop();
