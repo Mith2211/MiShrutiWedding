@@ -3,718 +3,1353 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>आमच्या लग्नाच्या आठवणी · 26 April 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Tiro+Devanagari+Marathi:ital@0;1&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<title>शुभ विवाह · Mithilesh & Shruti · 26 April 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Tiro+Devanagari+Marathi:ital@0;1&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --gold: #C9A96E;
-  --gold-light: #E8D5B0;
-  --gold-dark: #7A5C1E;
-  --gold-faint: rgba(201,169,110,0.12);
-  --cream: #FBF7F1;
-  --parchment: #F3EBE0;
-  --ink: #1C1A17;
-  --ink-muted: #5C5449;
-  --ink-faint: #9C9189;
-  --deep: #120F0B;
-  --groom-accent: #3D5A73;
-  --groom-light: rgba(61,90,115,0.12);
-  --bride-accent: #A85C72;
-  --bride-light: rgba(168,92,114,0.1);
-  --card-border: rgba(201,169,110,0.2);
+  --gold:        #C9A96E;
+  --gold-bright: #E8C97A;
+  --gold-light:  #F0DFB8;
+  --gold-dim:    #8B6914;
+  --gold-glow:   rgba(201,169,110,0.25);
+  --deep:        #0A0806;
+  --dark:        #120F0A;
+  --dark2:       #1C1712;
+  --dark3:       #251E14;
+  --ink:         #FAF6EE;
+  --ink-mid:     #D4C4A0;
+  --ink-soft:    #9A8A6A;
+  --ink-faint:   #5A4E38;
+  --border:      rgba(201,169,110,0.18);
+  --border-mid:  rgba(201,169,110,0.35);
+  --r: 201; --g: 169; --b: 110; /* for rgba() use */
 }
 
 html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Jost', sans-serif;
-  background: var(--cream);
+  background: var(--deep);
   color: var(--ink);
   font-weight: 300;
-  min-height: 100vh;
   overflow-x: hidden;
+  cursor: none;
 }
+
+/* ══════════════════════════════════
+   CUSTOM CURSOR
+══════════════════════════════════ */
+#cursor {
+  position: fixed;
+  width: 12px; height: 12px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s, width 0.2s, height 0.2s, opacity 0.2s;
+  mix-blend-mode: difference;
+}
+#cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(201,169,110,0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease, width 0.25s, height 0.25s, opacity 0.3s;
+}
+body:hover #cursor { opacity: 1; }
+a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
+@media (pointer: coarse) { #cursor, #cursor-ring { display: none; } body { cursor: auto; } }
+
+/* ══════════════════════════════════
+   SPARKLES
+══════════════════════════════════ */
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9990;
+  font-size: 14px;
+  animation: sparkleFly 1s ease-out forwards;
+  user-select: none;
+}
+@keyframes sparkleFly {
+  0%   { opacity: 1; transform: translate(0,0) scale(1); }
+  100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0); }
+}
+
+/* ══════════════════════════════════
+   PARTICLE CANVAS
+══════════════════════════════════ */
+#particle-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ══════════════════════════════════
+   INTRO / SPLASH SCREEN
+══════════════════════════════════ */
+#intro {
+  position: fixed;
+  inset: 0;
+  background: var(--deep);
+  z-index: 8000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: opacity 0.8s ease, visibility 0.8s;
+}
+#intro.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+.intro-ornament {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 28px;
+}
+.intro-line { height: 1px; width: 80px; background: linear-gradient(to right, transparent, var(--gold)); }
+.intro-line.r { background: linear-gradient(to left, transparent, var(--gold)); }
+.intro-dia { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); animation: rotateDia 3s linear infinite; }
+@keyframes rotateDia { to { transform: rotate(405deg); } }
+.intro-marathi {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: clamp(14px, 3vw, 18px);
+  color: var(--ink-soft);
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  animation: fadeUp 1s 0.3s both;
+}
+.intro-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(48px, 12vw, 96px);
+  line-height: 0.9;
+  color: var(--gold-light);
+  animation: fadeUp 1s 0.5s both;
+}
+.intro-names {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: clamp(20px, 5vw, 32px);
+  color: var(--ink);
+  margin: 20px 0 8px;
+  animation: fadeUp 1s 0.7s both;
+}
+.intro-amp {
+  color: var(--gold);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.3em;
+  margin: 0 8px;
+}
+.intro-date {
+  font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--ink-soft);
+  animation: fadeUp 1s 0.9s both;
+}
+.intro-btn {
+  margin-top: 36px;
+  padding: 14px 40px;
+  background: transparent;
+  border: 1px solid var(--border-mid);
+  color: var(--gold);
+  font-family: 'Jost', sans-serif;
+  font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+  cursor: none;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s, border-color 0.3s;
+  animation: fadeUp 1s 1.1s both;
+}
+.intro-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.intro-btn:hover::before { transform: scaleX(1); }
+.intro-btn:hover { color: var(--deep); border-color: var(--gold); }
+.intro-btn span { position: relative; z-index: 1; }
+.intro-flowers {
+  font-size: 24px; letter-spacing: 10px;
+  margin-top: 24px; opacity: 0.3;
+  animation: fadeUp 1s 1.3s both;
+}
+
+/* ══════════════════════════════════
+   MAIN SITE
+══════════════════════════════════ */
+#site { position: relative; z-index: 1; }
 
 /* ── ANIMATIONS ── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(22px); }
+  from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
 @keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0%   { background-position: -300% center; }
+  100% { background-position: 300% center; }
 }
 @keyframes float {
-  0%,100% { transform: translateY(0px) rotate(45deg); }
-  50%      { transform: translateY(-6px) rotate(45deg); }
+  0%,100% { transform: translateY(0) rotate(45deg); }
+  50%      { transform: translateY(-8px) rotate(45deg); }
+}
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(201,169,110,0.4); }
+  70% { box-shadow: 0 0 0 14px rgba(201,169,110,0); }
+  100% { box-shadow: 0 0 0 0 rgba(201,169,110,0); }
+}
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
 }
 
 /* ── HEADER ── */
 .site-header {
   position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 56px 24px 52px;
-  background: var(--deep);
+  padding: 60px 24px;
   overflow: hidden;
+  background: var(--dark);
 }
-.header-bg {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 90% 70% at 50% -10%, rgba(201,169,110,0.22) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 40% at 15% 100%, rgba(201,169,110,0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 40% at 85% 100%, rgba(201,169,110,0.07) 0%, transparent 60%);
+
+/* Scanline effect */
+.scanline {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(transparent, rgba(201,169,110,0.06), transparent);
+  animation: scanline 6s linear infinite;
   pointer-events: none;
 }
+
+/* Grid bg */
 .header-grid {
   position: absolute; inset: 0;
   background-image:
-    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(201,169,110,0.03) 40px),
-    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(201,169,110,0.03) 40px);
+    repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(201,169,110,0.03) 60px),
+    repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(201,169,110,0.03) 60px);
   pointer-events: none;
 }
-.header-content { position: relative; z-index: 1; animation: fadeUp 0.9s ease both; }
+/* Radial glow */
+.header-glow {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,169,110,0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 30% at 20% 80%, rgba(201,169,110,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 30% at 80% 80%, rgba(201,169,110,0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+/* Corner frames */
+.corner-frame {
+  position: absolute;
+  width: 60px; height: 60px;
+  border-color: rgba(201,169,110,0.25);
+  border-style: solid;
+  border-width: 0;
+}
+.corner-frame.tl { top: 24px; left: 24px; border-top-width: 1px; border-left-width: 1px; }
+.corner-frame.tr { top: 24px; right: 24px; border-top-width: 1px; border-right-width: 1px; }
+.corner-frame.bl { bottom: 90px; left: 24px; border-bottom-width: 1px; border-left-width: 1px; }
+.corner-frame.br { bottom: 90px; right: 24px; border-bottom-width: 1px; border-right-width: 1px; }
 
-.ornament {
+.header-content { position: relative; z-index: 2; }
+
+.h-ornament {
   display: flex; align-items: center; justify-content: center;
-  gap: 14px; margin-bottom: 22px;
+  gap: 14px; margin-bottom: 26px;
 }
-.ornament-line {
-  height: 1px; width: 64px;
-  background: linear-gradient(to right, transparent, var(--gold));
-}
-.ornament-line.rev { background: linear-gradient(to left, transparent, var(--gold)); }
-.ornament-dia {
-  width: 8px; height: 8px;
-  background: var(--gold);
-  transform: rotate(45deg);
-  animation: float 3s ease-in-out infinite;
-}
-.ornament-dot {
-  width: 4px; height: 4px;
-  background: rgba(201,169,110,0.5);
-  border-radius: 50%;
-}
+.h-line { height: 1px; width: 70px; background: linear-gradient(to right, transparent, var(--gold)); }
+.h-line.r { background: linear-gradient(to left, transparent, var(--gold)); }
+.h-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(201,169,110,0.5); }
+.h-dia { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); animation: float 3s ease-in-out infinite; }
 
-.header-eyebrow {
-  font-family: 'Jost', sans-serif;
-  font-weight: 400; font-size: 10px;
-  letter-spacing: 5px; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 18px;
+.h-eyebrow {
+  font-size: 10px; letter-spacing: 6px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 16px;
+  font-weight: 400;
 }
-
-.header-marathi {
+.h-marathi {
   font-family: 'Tiro Devanagari Marathi', serif;
-  font-size: clamp(14px, 3vw, 18px);
-  color: rgba(232,213,176,0.65);
-  letter-spacing: 0.5px;
-  margin-bottom: 10px;
+  font-size: clamp(16px, 3.5vw, 22px);
+  color: var(--ink-mid);
+  margin-bottom: 12px;
 }
-
-.header-title {
+.h-title {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
-  font-size: clamp(42px, 10vw, 84px);
-  line-height: 1;
-  color: #FAF7F2;
-  margin-bottom: 4px;
+  font-size: clamp(52px, 13vw, 110px);
+  line-height: 0.88;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
 }
-.header-title em {
+.h-title .line1 { display: block; color: var(--ink); }
+.h-title .line2 {
+  display: block;
   font-style: italic;
-  background: linear-gradient(120deg, var(--gold-light), var(--gold), var(--gold-light));
-  background-size: 200% auto;
+  background: linear-gradient(110deg, var(--gold-light), var(--gold-bright), var(--gold), var(--gold-light));
+  background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: shimmer 4s linear infinite;
 }
 
-.header-names {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(22px, 5vw, 36px);
-  font-style: italic;
-  color: rgba(250,247,242,0.85);
-  margin: 14px 0 6px;
-  letter-spacing: 1px;
+.h-names {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: clamp(22px, 5vw, 38px);
+  color: var(--ink);
+  margin: 20px 0 8px;
+  line-height: 1.2;
 }
-.header-names .amp {
+.h-amp {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
   color: var(--gold);
-  font-size: 1.2em;
-  margin: 0 8px;
+  font-size: 1.25em;
+  margin: 0 10px;
+}
+.h-tagline {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-style: italic;
+  font-size: clamp(14px, 3vw, 18px);
+  color: var(--ink-soft);
+  margin: 10px 0;
+}
+.h-date-row {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  margin-top: 22px;
+}
+.h-date-line { height: 1px; width: 50px; background: linear-gradient(to right, transparent, var(--border-mid)); }
+.h-date-line.r { background: linear-gradient(to left, transparent, var(--border-mid)); }
+.h-date {
+  font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--ink-soft);
 }
 
-.header-date {
-  font-family: 'Jost', sans-serif;
-  font-size: 11px; letter-spacing: 4px;
-  color: var(--ink-faint); text-transform: uppercase;
-  margin-top: 18px;
+/* Scroll hint */
+.scroll-hint {
+  position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  z-index: 2; opacity: 0.5;
+  animation: fadeIn 1s 2s both;
 }
-.header-date span {
-  display: inline-block;
-  margin: 0 10px;
-  color: var(--gold);
-  opacity: 0.7;
+.scroll-hint span { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--ink-soft); }
+.scroll-arrow { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); margin: 0 auto; animation: scrollPulse 1.5s ease-in-out infinite; }
+@keyframes scrollPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+/* ── STATS STRIP ── */
+.stats-strip {
+  display: flex; justify-content: center;
+  background: var(--dark2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative; z-index: 2;
+}
+.stat-item {
+  flex: 1; max-width: 170px;
+  padding: 20px 10px; text-align: center;
+  border-right: 1px solid var(--border);
+  transition: background 0.25s;
+}
+.stat-item:last-child { border-right: none; }
+.stat-item:hover { background: rgba(201,169,110,0.05); }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 32px;
+  color: var(--gold); line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-lbl {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 11px; color: var(--ink-soft);
 }
 
 /* ── NAV ── */
 .nav-wrap {
-  position: sticky; top: 0; z-index: 100;
-  background: var(--deep);
-  border-bottom: 1px solid rgba(201,169,110,0.18);
-  backdrop-filter: blur(12px);
+  position: sticky; top: 0; z-index: 500;
+  background: rgba(10,8,6,0.92);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 .nav-inner {
-  display: flex; max-width: 960px;
+  display: flex; max-width: 1000px;
   margin: 0 auto; padding: 0 20px;
 }
 .nav-tab {
-  flex: 1; padding: 15px 10px;
-  text-align: center; cursor: pointer;
-  font-size: 10px; letter-spacing: 3.5px;
-  text-transform: uppercase;
-  color: var(--ink-faint);
+  flex: 1; padding: 16px 8px; text-align: center; cursor: none;
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 15px; color: var(--ink-faint);
   border-bottom: 2px solid transparent;
-  transition: all 0.25s; user-select: none;
+  transition: all 0.3s; user-select: none;
+  position: relative;
 }
-.nav-tab:hover { color: var(--gold-light); }
-.nav-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
-.tab-pip {
-  display: inline-block;
-  width: 5px; height: 5px; border-radius: 50%;
-  margin-right: 7px; vertical-align: middle;
-  position: relative; top: -1px;
+.nav-tab::after {
+  content: '';
+  position: absolute; bottom: -2px; left: 50%; right: 50%;
+  height: 2px; background: var(--gold);
+  transition: left 0.3s, right 0.3s;
 }
-.tab-pip.g { background: #4A7A9B; }
-.tab-pip.b { background: var(--bride-accent); }
+.nav-tab.active::after { left: 0; right: 0; }
+.nav-tab:hover { color: var(--ink-mid); }
+.nav-tab.active { color: var(--gold); }
+.n-pip { display: inline-block; width: 5px; height: 5px; border-radius: 50%; margin-right: 7px; vertical-align: middle; position: relative; top: -1px; }
+.pip-g { background: #4A8A6E; }
+.pip-b { background: #A0608A; }
 
 /* ── MAIN ── */
-.main {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 52px 20px 100px;
-}
-
+.main { max-width: 1000px; margin: 0 auto; padding: 60px 20px 120px; position: relative; z-index: 1; }
 .panel { display: none; }
 .panel.active { display: block; }
 
 /* ── SECTION INTRO ── */
 .section-intro {
-  display: flex; align-items: center; gap: 18px;
-  margin-bottom: 44px; padding-bottom: 28px;
-  border-bottom: 1px solid rgba(201,169,110,0.2);
+  display: flex; align-items: center; gap: 20px;
+  padding: 24px 28px; margin-bottom: 50px;
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  position: relative; overflow: hidden;
   animation: fadeUp 0.6s ease both;
 }
-.section-avatar {
-  flex-shrink: 0; width: 56px; height: 56px;
-  border-radius: 50%; display: flex;
-  align-items: center; justify-content: center;
-  font-size: 24px;
+.section-intro::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
 }
-.section-avatar.g {
-  background: var(--groom-light);
-  border: 1px solid rgba(61,90,115,0.3);
+.section-intro::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 0% 50%, rgba(201,169,110,0.04), transparent);
+  pointer-events: none;
 }
-.section-avatar.b {
-  background: var(--bride-light);
-  border: 1px solid rgba(168,92,114,0.3);
+.s-avatar {
+  width: 60px; height: 60px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; flex-shrink: 0;
+  animation: pulse-ring 2.5s ease infinite;
 }
-.section-label {
-  font-size: 10px; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--ink-faint);
-  margin-bottom: 3px;
+.s-avatar.g { background: rgba(74,138,110,0.15); border: 1px solid rgba(74,138,110,0.3); }
+.s-avatar.b { background: rgba(160,96,138,0.15); border: 1px solid rgba(160,96,138,0.3); }
+.s-label { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 4px; }
+.s-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; color: var(--ink); }
+.s-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: var(--ink-soft); margin-top: 3px; }
+
+/* ── CONTROLS BAR ── */
+.ctrl-bar {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 40px; flex-wrap: wrap;
+  animation: fadeUp 0.5s 0.1s ease both;
 }
-.section-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 30px; font-weight: 400; color: var(--ink);
+.ctrl-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 22px; border-radius: 40px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--ink-soft);
+  font-family: 'Jost', sans-serif;
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  cursor: none; transition: all 0.25s;
 }
-.section-note {
-  font-size: 12px; color: var(--ink-faint);
-  margin-top: 3px; font-style: italic;
+.ctrl-btn:hover, .ctrl-btn.active-btn {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(201,169,110,0.06);
+}
+.ctrl-line { flex: 1; height: 1px; background: linear-gradient(to right, var(--border), transparent); min-width: 20px; }
+.count-badge {
+  font-size: 10px; letter-spacing: 2px;
+  color: var(--ink-faint); white-space: nowrap;
 }
 
-/* ── FUNCTION GROUP ── */
-.fn-group {
-  margin-bottom: 52px;
+/* ── FUNCTION CARD (accordion) ── */
+.fn-block {
+  margin-bottom: 6px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--dark2);
+  transition: border-color 0.3s;
   animation: fadeUp 0.5s ease both;
 }
-.fn-group:nth-child(2) { animation-delay: 0.05s; }
-.fn-group:nth-child(3) { animation-delay: 0.1s; }
-.fn-group:nth-child(4) { animation-delay: 0.15s; }
-.fn-group:nth-child(5) { animation-delay: 0.2s; }
+.fn-block:hover { border-color: var(--border-mid); }
+.fn-block.open { border-color: rgba(201,169,110,0.35); }
+
+/* delay stagger */
+.fn-block:nth-child(1)  { animation-delay: 0.05s; }
+.fn-block:nth-child(2)  { animation-delay: 0.10s; }
+.fn-block:nth-child(3)  { animation-delay: 0.15s; }
+.fn-block:nth-child(4)  { animation-delay: 0.20s; }
+.fn-block:nth-child(5)  { animation-delay: 0.25s; }
+.fn-block:nth-child(6)  { animation-delay: 0.30s; }
+.fn-block:nth-child(7)  { animation-delay: 0.35s; }
+.fn-block:nth-child(8)  { animation-delay: 0.40s; }
+.fn-block:nth-child(9)  { animation-delay: 0.45s; }
+.fn-block:nth-child(10) { animation-delay: 0.50s; }
+.fn-block:nth-child(11) { animation-delay: 0.55s; }
+.fn-block:nth-child(12) { animation-delay: 0.60s; }
+
+/* Top gold bar on open */
+.fn-block.open::before { content: ''; display: block; height: 2px; background: linear-gradient(to right, var(--gold), var(--gold-bright), var(--gold)); }
 
 .fn-header {
-  display: flex; align-items: center;
-  gap: 14px; margin-bottom: 20px;
+  display: flex; align-items: center; gap: 14px;
+  padding: 18px 22px; cursor: none;
+  user-select: none;
+  transition: background 0.2s;
+  position: relative;
 }
+.fn-header:hover { background: rgba(201,169,110,0.03); }
+
 .fn-num {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 12px; font-style: italic;
-  color: var(--gold); flex-shrink: 0; min-width: 20px;
+  font-style: italic; font-size: 13px;
+  color: var(--gold); flex-shrink: 0; width: 22px;
+  opacity: 0.7;
 }
+.fn-icon { font-size: 20px; flex-shrink: 0; }
+.fn-text { flex: 1; min-width: 0; }
 .fn-title {
   font-family: 'Tiro Devanagari Marathi', serif;
-  font-size: clamp(18px, 4vw, 24px);
-  font-weight: 400; color: var(--ink); flex-shrink: 0;
+  font-size: clamp(15px, 3vw, 19px);
+  color: var(--ink); line-height: 1.25;
 }
-.fn-title-en {
+.fn-sub {
   font-family: 'Cormorant Garamond', serif;
-  font-style: italic; font-size: 13px;
-  color: var(--ink-faint); margin-left: 6px;
+  font-style: italic; font-size: 12px;
+  color: var(--ink-soft); margin-top: 2px;
+  display: block;
 }
-.fn-rule {
-  flex: 1; height: 1px;
-  background: linear-gradient(to right, rgba(201,169,110,0.35), transparent);
+.fn-date-tag {
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 20px;
+  background: rgba(201,169,110,0.08);
+  border: 1px solid var(--border);
+  color: var(--ink-soft); flex-shrink: 0;
+  white-space: nowrap;
+}
+.fn-count {
+  font-size: 10px; color: var(--ink-faint);
+  flex-shrink: 0; white-space: nowrap;
+  margin-right: 4px;
+}
+.fn-arrow {
+  font-size: 12px; color: var(--gold);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  flex-shrink: 0;
+}
+.fn-block.open .fn-arrow { transform: rotate(180deg); }
+
+/* Cards container */
+.fn-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1),
+              padding 0.4s ease,
+              opacity 0.35s ease;
+  opacity: 0;
+}
+.fn-block.open .fn-cards {
+  max-height: 800px;
+  padding: 4px 20px 20px;
+  opacity: 1;
 }
 
-/* ── CARDS GRID ── */
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-  gap: 14px;
+/* Separator */
+.fn-sep {
+  height: 1px; margin: 0 22px;
+  background: linear-gradient(to right, var(--border), transparent);
+  display: none;
 }
+.fn-block.open .fn-sep { display: block; }
 
 /* ── CARD ── */
 .card {
-  border-radius: 14px; overflow: hidden;
-  border: 1px solid var(--card-border);
-  background: #fff;
+  border-radius: 12px; overflow: hidden;
   text-decoration: none; display: block;
-  transition: transform 0.22s cubic-bezier(.2,.8,.4,1),
-              box-shadow 0.22s ease,
-              border-color 0.22s ease;
-  cursor: pointer;
+  background: var(--dark3);
+  border: 1px solid var(--border);
+  transition: transform 0.25s cubic-bezier(.2,.8,.4,1),
+              box-shadow 0.25s ease,
+              border-color 0.25s ease;
+  position: relative;
 }
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(28,26,23,0.1), 0 4px 12px rgba(201,169,110,0.12);
-  border-color: rgba(201,169,110,0.5);
+  transform: translateY(-5px) scale(1.015);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.5), 0 0 20px rgba(201,169,110,0.1);
+  border-color: var(--border-mid);
 }
+/* Shimmer on hover */
+.card::after {
+  content: '';
+  position: absolute; top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+  transition: left 0.5s ease;
+}
+.card:hover::after { left: 150%; }
 
 .card-thumb {
-  height: 130px; position: relative;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
+  height: 128px; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
 }
-.card-thumb.photo {
-  background: linear-gradient(145deg, #FDF5EA 0%, #F0E3CC 100%);
-}
-.card-thumb.reel {
-  background: linear-gradient(145deg, #1C1814 0%, #2A2218 100%);
-}
-.card-thumb.candid {
-  background: linear-gradient(145deg, #EEF3F0 0%, #DDE8E2 100%);
-}
+.thumb-photo { background: linear-gradient(145deg, #1e1608, #2a1e10); }
+.thumb-reel  { background: linear-gradient(145deg, #08080a, #141018); }
+.thumb-special { background: linear-gradient(145deg, #0a1208, #141e10); }
 
-.thumb-hatch {
-  position: absolute; inset: 0; opacity: 0.05;
+.thumb-pattern {
+  position: absolute; inset: 0;
   background-image: repeating-linear-gradient(
-    45deg,
-    var(--gold) 0px, var(--gold) 1px,
-    transparent 1px, transparent 12px
+    45deg, rgba(201,169,110,0.03) 0px, rgba(201,169,110,0.03) 1px,
+    transparent 1px, transparent 14px
   );
 }
+/* Animated ring on reel cards */
+.thumb-reel .thumb-ring {
+  position: absolute;
+  width: 70px; height: 70px; border-radius: 50%;
+  border: 1px solid rgba(201,169,110,0.15);
+  animation: expandRing 2s ease-out infinite;
+}
+.thumb-reel .thumb-ring:nth-child(2) { animation-delay: 0.7s; }
+.thumb-reel .thumb-ring:nth-child(3) { animation-delay: 1.4s; }
+@keyframes expandRing {
+  0%   { width: 50px; height: 50px; opacity: 0.5; }
+  100% { width: 100px; height: 100px; opacity: 0; }
+}
+
 .thumb-icon {
-  font-size: 38px; position: relative; z-index: 1;
-  transition: transform 0.2s;
+  font-size: 36px; position: relative; z-index: 2;
+  transition: transform 0.3s; filter: drop-shadow(0 0 8px rgba(201,169,110,0.2));
 }
-.card:hover .thumb-icon { transform: scale(1.08); }
+.card:hover .thumb-icon { transform: scale(1.15) rotate(-5deg); }
 
-.type-tag {
+.card-badge {
   position: absolute; top: 10px; right: 10px;
-  font-size: 9px; letter-spacing: 2px;
-  text-transform: uppercase; padding: 3px 9px;
-  border-radius: 20px; font-weight: 500; font-family: 'Jost', sans-serif;
+  font-size: 8px; letter-spacing: 2.5px; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 20px; font-weight: 500;
+  backdrop-filter: blur(8px); z-index: 3;
 }
-.type-tag.photo {
-  background: rgba(201,169,110,0.16);
-  color: var(--gold-dark);
-  border: 1px solid rgba(201,169,110,0.4);
-}
-.type-tag.reel {
-  background: rgba(201,169,110,0.18);
-  color: var(--gold-light);
-  border: 1px solid rgba(201,169,110,0.3);
-}
-.type-tag.candid {
-  background: rgba(100,150,120,0.15);
-  color: #3a6b50;
-  border: 1px solid rgba(100,150,120,0.35);
-}
+.badge-photo { background: rgba(201,169,110,0.15); color: var(--gold); border: 1px solid rgba(201,169,110,0.3); }
+.badge-reel  { background: rgba(255,255,255,0.08); color: #C8A0D8; border: 1px solid rgba(200,160,216,0.3); }
+.badge-candid { background: rgba(74,138,110,0.15); color: #7AC8A0; border: 1px solid rgba(74,138,110,0.3); }
+.badge-special { background: rgba(100,180,120,0.12); color: #90C890; border: 1px solid rgba(100,180,120,0.25); }
 
-.card-body { padding: 15px 17px 17px; }
+.card-body { padding: 14px 16px 16px; }
 .card-title {
   font-family: 'Tiro Devanagari Marathi', serif;
-  font-size: 16px; color: var(--ink);
-  margin-bottom: 4px; line-height: 1.3;
+  font-size: 14px; color: var(--ink);
+  margin-bottom: 2px; line-height: 1.35;
 }
-.card-title-en {
+.card-en {
   font-family: 'Cormorant Garamond', serif;
-  font-style: italic; font-size: 12px;
-  color: var(--ink-faint); margin-bottom: 10px;
-  display: block;
+  font-style: italic; font-size: 11px;
+  color: var(--ink-faint); display: block; margin-bottom: 12px;
 }
 .card-cta {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 10px; letter-spacing: 2.5px;
-  text-transform: uppercase; color: var(--gold-dark);
-  font-weight: 500; font-family: 'Jost', sans-serif;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); font-weight: 500;
 }
-.cta-arrow { transition: transform 0.2s; font-style: normal; }
-.card:hover .cta-arrow { transform: translateX(4px); }
-
-/* ── DIVIDER ── */
-.section-divider {
-  display: flex; align-items: center;
-  gap: 16px; margin: 48px 0 36px;
-}
-.div-line {
-  flex: 1; height: 1px;
-  background: linear-gradient(to right, transparent, rgba(201,169,110,0.3), transparent);
-}
-.div-ornament {
-  display: flex; gap: 5px; align-items: center;
-}
-.div-d {
-  width: 5px; height: 5px; background: rgba(201,169,110,0.5);
-  transform: rotate(45deg);
-}
+.c-arr { transition: transform 0.2s; }
+.card:hover .c-arr { transform: translateX(5px); }
 
 /* ── COMING SOON ── */
 .coming-soon {
-  text-align: center; padding: 80px 24px;
-  border: 1px dashed rgba(168,92,114,0.3);
-  border-radius: 18px;
-  background: rgba(168,92,114,0.025);
-  animation: fadeUp 0.6s ease both;
+  text-align: center; padding: 90px 24px;
+  border: 1px solid var(--border);
+  border-radius: 20px; background: var(--dark2);
+  animation: fadeUp 0.6s ease both; position: relative; overflow: hidden;
 }
-.coming-icon { font-size: 44px; margin-bottom: 18px; }
-.coming-title {
+.coming-soon::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 40%, rgba(201,169,110,0.05), transparent);
+}
+.cs-icon { font-size: 44px; margin-bottom: 16px; }
+.cs-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 28px; font-weight: 300;
-  color: var(--bride-accent); margin-bottom: 10px;
+  font-style: italic; font-size: 32px; color: var(--gold); margin-bottom: 8px;
 }
-.coming-text {
-  font-size: 13px; color: var(--ink-faint);
-  line-height: 1.8;
+.cs-marathi {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 18px; color: var(--ink-mid); margin-bottom: 12px;
 }
+.cs-text { font-size: 13px; color: var(--ink-soft); line-height: 1.9; }
 
 /* ── FOOTER ── */
 .site-footer {
-  background: var(--deep);
-  text-align: center;
-  padding: 36px 24px;
-  border-top: 1px solid rgba(201,169,110,0.12);
+  background: var(--dark); border-top: 1px solid var(--border);
+  text-align: center; padding: 48px 24px 36px;
+  position: relative; z-index: 1; overflow: hidden;
 }
-.footer-marathi {
+.site-footer::before {
+  content: '';
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 200px; height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.f-ornament {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; margin-bottom: 20px;
+}
+.f-line { height: 1px; width: 60px; background: linear-gradient(to right, transparent, var(--border-mid)); }
+.f-line.r { background: linear-gradient(to left, transparent, var(--border-mid)); }
+.f-dia { width: 6px; height: 6px; background: rgba(201,169,110,0.4); transform: rotate(45deg); }
+.f-marathi {
   font-family: 'Tiro Devanagari Marathi', serif;
-  font-size: 16px; color: var(--gold);
-  margin-bottom: 8px;
+  font-size: 18px; color: var(--ink-mid); margin-bottom: 5px;
 }
-.footer-en {
+.f-en {
   font-family: 'Cormorant Garamond', serif;
-  font-style: italic; font-size: 14px;
-  color: rgba(250,247,242,0.4);
+  font-style: italic; font-size: 15px; color: var(--ink-soft);
 }
-.footer-date {
-  font-size: 10px; letter-spacing: 3px;
-  text-transform: uppercase;
-  color: rgba(156,145,137,0.5);
-  margin-top: 14px;
+.f-date {
+  font-size: 9px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--ink-faint); margin-top: 16px;
 }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 540px) {
-  .cards-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .card-thumb { height: 110px; }
-  .thumb-icon { font-size: 28px; }
-  .card-body { padding: 11px 13px 13px; }
-  .card-title { font-size: 13px; }
-  .fn-title { font-size: 17px; }
-  .section-intro { gap: 12px; }
-  .header-title { font-size: 40px; }
-  .header-names { font-size: 22px; }
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
-@media (max-width: 360px) {
-  .cards-grid { grid-template-columns: 1fr; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── PROGRESS BAR ── */
+#progress-bar {
+  position: fixed; top: 0; left: 0; z-index: 9000;
+  height: 2px; width: 0%;
+  background: linear-gradient(to right, var(--gold-dim), var(--gold-bright));
+  transition: width 0.1s;
+  box-shadow: 0 0 8px var(--gold-glow);
+}
+
+/* ── TOAST ── */
+#toast {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px);
+  background: var(--dark2); border: 1px solid var(--border-mid);
+  color: var(--gold); padding: 12px 24px; border-radius: 40px;
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  z-index: 9000; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  white-space: nowrap;
+}
+#toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .fn-cards { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .card-thumb { height: 104px; }
+  .thumb-icon { font-size: 26px; }
+  .card-body { padding: 10px 12px 12px; }
+  .card-title { font-size: 12px; }
+  .corner-frame { width: 36px; height: 36px; }
+  .fn-header { padding: 14px 16px; gap: 10px; }
+  .fn-date-tag { display: none; }
+  .stat-num { font-size: 24px; }
+  .section-intro { padding: 18px 20px; gap: 14px; }
+}
+@media (max-width: 380px) {
+  .fn-cards { grid-template-columns: 1fr; }
+  .ctrl-bar { flex-wrap: wrap; }
 }
 </style>
 </head>
 <body>
 
-<!-- ════════════════════════════════
-     HEADER
-════════════════════════════════ -->
+<!-- ══ CURSOR ══ -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- ══ PROGRESS BAR ══ -->
+<div id="progress-bar"></div>
+
+<!-- ══ TOAST ══ -->
+<div id="toast">Album उघडत आहे... 🌟</div>
+
+<!-- ══ PARTICLE CANVAS ══ -->
+<canvas id="particle-canvas"></canvas>
+
+<!-- ══════════════════════════════════
+     INTRO / SPLASH
+══════════════════════════════════ -->
+<div id="intro">
+  <div class="intro-ornament">
+    <div class="intro-line r"></div>
+    <div class="intro-dia"></div>
+    <div class="intro-line"></div>
+  </div>
+  <p class="intro-marathi">शुभ विवाह · आठवणींचा खजिना</p>
+  <h1 class="intro-title">Wedding<br><em style="font-style:italic;">Memories</em></h1>
+  <p class="intro-names">मिथिलेश <span class="intro-amp">&amp;</span> शृती</p>
+  <p class="intro-date">२६ एप्रिल २०२६ · खामगाव · महाराष्ट्र</p>
+  <button class="intro-btn" onclick="enterSite()"><span>आठवणी पहा →</span></button>
+  <div class="intro-flowers">🪔 ✦ 🌸 ✦ 🪔</div>
+</div>
+
+<!-- ══════════════════════════════════
+     MAIN SITE
+══════════════════════════════════ -->
+<div id="site" style="opacity:0;transition:opacity 0.8s ease;">
+
+<!-- ─── HEADER ─── -->
 <header class="site-header">
-  <div class="header-bg"></div>
+  <div class="scanline"></div>
   <div class="header-grid"></div>
+  <div class="header-glow"></div>
+  <div class="corner-frame tl"></div>
+  <div class="corner-frame tr"></div>
+  <div class="corner-frame bl"></div>
+  <div class="corner-frame br"></div>
+
   <div class="header-content">
-    <div class="ornament">
-      <div class="ornament-line rev"></div>
-      <div class="ornament-dot"></div>
-      <div class="ornament-dia"></div>
-      <div class="ornament-dot"></div>
-      <div class="ornament-line"></div>
+    <div class="h-ornament">
+      <div class="h-line r"></div>
+      <div class="h-dot"></div>
+      <div class="h-dia"></div>
+      <div class="h-dot"></div>
+      <div class="h-line"></div>
     </div>
-    <p class="header-eyebrow">A Lifetime of Memories</p>
-    <p class="header-marathi">आमच्या लग्नाच्या आठवणी</p>
-    <h1 class="header-title"><em>Wedding</em><br>Celebrations</h1>
-    <p class="header-names">Mithilesh <span class="amp">&amp;</span> Shruti</p>
-    <div class="ornament" style="margin-top:20px;margin-bottom:0;">
-      <div class="ornament-line rev" style="width:40px;"></div>
-      <div class="ornament-dot"></div>
-      <div class="ornament-line" style="width:40px;"></div>
+    <p class="h-eyebrow">A Collection of Precious Memories</p>
+    <p class="h-marathi">लग्नाचा आनंद · प्रेमाची गाथा</p>
+    <h1 class="h-title">
+      <span class="line1">शुभ</span>
+      <span class="line2">विवाह</span>
+    </h1>
+    <p class="h-names">मिथिलेश <span class="h-amp">&amp;</span> शृती</p>
+    <p class="h-tagline">सात जन्मांचे नाते · दोन जीव एक बंधन</p>
+    <div class="h-date-row">
+      <div class="h-date-line r"></div>
+      <span class="h-date">२६ एप्रिल २०२६ · खामगाव · महाराष्ट्र</span>
+      <div class="h-date-line"></div>
     </div>
-    <p class="header-date">२६ एप्रिल <span>·</span> 26 April 2026 <span>·</span> Khamgaon</p>
+  </div>
+  <div class="scroll-hint">
+    <span>खाली पहा</span>
+    <div class="scroll-arrow"></div>
   </div>
 </header>
 
-<!-- ════════════════════════════════
-     NAV
-════════════════════════════════ -->
+<!-- ─── STATS STRIP ─── -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <div class="stat-num">१२</div>
+    <div class="stat-lbl">कार्यक्रम</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">१७</div>
+    <div class="stat-lbl">Albums & Reels</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">२</div>
+    <div class="stat-lbl">फोटोग्राफर</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">∞</div>
+    <div class="stat-lbl">आठवणी</div>
+  </div>
+</div>
+
+<!-- ─── NAV ─── -->
 <nav class="nav-wrap">
   <div class="nav-inner">
     <div class="nav-tab active" onclick="switchTab('groom')" id="tab-groom">
-      <span class="tab-pip g"></span>वर पक्ष · Groom's Side
+      <span class="n-pip pip-g"></span>वर पक्ष · Groom's Side
     </div>
     <div class="nav-tab" onclick="switchTab('bride')" id="tab-bride">
-      <span class="tab-pip b"></span>वधू पक्ष · Bride's Side
+      <span class="n-pip pip-b"></span>वधू पक्ष · Bride's Side
     </div>
   </div>
 </nav>
 
-<!-- ════════════════════════════════
-     MAIN
-════════════════════════════════ -->
+<!-- ─── MAIN ─── -->
 <main class="main">
 
-  <!-- ══ GROOM'S SIDE PANEL ══ -->
+  <!-- ══ GROOM PANEL ══ -->
   <div class="panel active" id="panel-groom">
 
-    <div class="section-intro">
-      <div class="section-avatar g">🤵</div>
+    <div class="section-intro reveal">
+      <div class="s-avatar g">🤵</div>
       <div>
-        <div class="section-label">Photographer · वर पक्ष</div>
-        <div class="section-name">Groom's Side</div>
-        <div class="section-note">All functions · Complete gallery</div>
+        <div class="s-label">Photographer · वर पक्ष</div>
+        <div class="s-name">वर पक्षाचे फोटो</div>
+        <div class="s-note">मिथिलेश · सर्व कार्यक्रम · Complete Gallery</div>
       </div>
     </div>
 
-    <!-- 01: गोंधळ आणि वर जेवण -->
-    <div class="fn-group">
-      <div class="fn-header">
+    <div class="ctrl-bar reveal">
+      <button class="ctrl-btn" id="expand-btn" onclick="toggleAll()">
+        <span id="expand-icon">✦</span>
+        <span id="expand-text">सर्व उघडा</span>
+      </button>
+      <div class="ctrl-line"></div>
+      <span class="count-badge" id="open-count">0 / 12 उघडे</span>
+    </div>
+
+    <!-- ── 01: लग्न पक्का कार्यक्रम ── -->
+    <div class="fn-block reveal" id="fn01">
+      <div class="fn-header" onclick="toggleFn('fn01')">
         <span class="fn-num">01</span>
-        <h2 class="fn-title">गोंधळ आणि वर जेवण</h2>
-        <div class="fn-rule"></div>
+        <span class="fn-icon">🤝</span>
+        <div class="fn-text">
+          <div class="fn-title">लग्न पक्का कार्यक्रम</div>
+          <span class="fn-sub">Engagement Confirmation · Nov 2025</span>
+        </div>
+        <span class="fn-date-tag">29 नोव्हें 2025</span>
+        <span class="fn-count">1 album</span>
+        <span class="fn-arrow">▾</span>
       </div>
-      <div class="cards-grid">
-        <a class="card" href="https://photos.app.goo.gl/fQZJH7B8MvuLvrjKA" target="_blank" rel="noopener">
-          <div class="card-thumb photo">
-            <div class="thumb-hatch"></div>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/K7eR5zSDJ4tsaJRRA" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-photo">
+            <div class="thumb-pattern"></div>
             <span class="thumb-icon">📷</span>
-            <span class="type-tag photo">Photos</span>
+            <span class="card-badge badge-photo">Photos</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">लग्न पक्का कार्यक्रम</div>
+            <span class="card-en">Engagement Confirmation Ceremony</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── 02: गोंधळ आणि वर जेवण ── -->
+    <div class="fn-block reveal" id="fn02">
+      <div class="fn-header" onclick="toggleFn('fn02')">
+        <span class="fn-num">02</span>
+        <span class="fn-icon">🪘</span>
+        <div class="fn-text">
+          <div class="fn-title">गोंधळ आणि वर जेवण</div>
+          <span class="fn-sub">Gondhal & Groom's Feast</span>
+        </div>
+        <span class="fn-count">1 album</span>
+        <span class="fn-arrow">▾</span>
+      </div>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/fQZJH7B8MvuLvrjKA" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-photo">
+            <div class="thumb-pattern"></div>
+            <span class="thumb-icon">📷</span>
+            <span class="card-badge badge-photo">Photos</span>
           </div>
           <div class="card-body">
             <div class="card-title">गोंधळ आणि वर जेवण</div>
-            <span class="card-title-en">Gondhal & Groom's Feast</span>
-            <div class="card-cta">Open Album <i class="cta-arrow">→</i></div>
+            <span class="card-en">Gondhal & Groom's Feast</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
           </div>
         </a>
       </div>
     </div>
 
-    <!-- 02: मुहूर्त -->
-    <div class="fn-group">
-      <div class="fn-header">
-        <span class="fn-num">02</span>
-        <h2 class="fn-title">मुहूर्त</h2>
-        <div class="fn-rule"></div>
+    <!-- ── 03: मुहूर्त ── -->
+    <div class="fn-block reveal" id="fn03">
+      <div class="fn-header" onclick="toggleFn('fn03')">
+        <span class="fn-num">03</span>
+        <span class="fn-icon">🪔</span>
+        <div class="fn-text">
+          <div class="fn-title">मुहूर्त</div>
+          <span class="fn-sub">Auspicious Muhurt Ceremony</span>
+        </div>
+        <span class="fn-count">1 album</span>
+        <span class="fn-arrow">▾</span>
       </div>
-      <div class="cards-grid">
-        <a class="card" href="https://photos.app.goo.gl/QxMqYUXPpyxAUsEBA" target="_blank" rel="noopener">
-          <div class="card-thumb photo">
-            <div class="thumb-hatch"></div>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/QxMqYUXPpyxAUsEBA" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-photo">
+            <div class="thumb-pattern"></div>
             <span class="thumb-icon">📷</span>
-            <span class="type-tag photo">Photos</span>
+            <span class="card-badge badge-photo">Photos</span>
           </div>
           <div class="card-body">
             <div class="card-title">मुहूर्त</div>
-            <span class="card-title-en">Auspicious Ceremony</span>
-            <div class="card-cta">Open Album <i class="cta-arrow">→</i></div>
+            <span class="card-en">Auspicious Ceremony</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
           </div>
         </a>
       </div>
     </div>
 
-    <!-- 03: देवकुंडी -->
-    <div class="fn-group">
-      <div class="fn-header">
-        <span class="fn-num">03</span>
-        <h2 class="fn-title">देवकुंडी</h2>
-        <div class="fn-rule"></div>
+    <!-- ── 04: देवकुंडी ── -->
+    <div class="fn-block reveal" id="fn04">
+      <div class="fn-header" onclick="toggleFn('fn04')">
+        <span class="fn-num">04</span>
+        <span class="fn-icon">🕉️</span>
+        <div class="fn-text">
+          <div class="fn-title">देवकुंडी</div>
+          <span class="fn-sub">Dev Kundi · Sacred Fire Ritual</span>
+        </div>
+        <span class="fn-count">1 album</span>
+        <span class="fn-arrow">▾</span>
       </div>
-      <div class="cards-grid">
-        <a class="card" href="https://photos.app.goo.gl/Gcyxk2EuyaX9HsCe8" target="_blank" rel="noopener">
-          <div class="card-thumb photo">
-            <div class="thumb-hatch"></div>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/Gcyxk2EuyaX9HsCe8" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-photo">
+            <div class="thumb-pattern"></div>
             <span class="thumb-icon">📷</span>
-            <span class="type-tag photo">Photos</span>
+            <span class="card-badge badge-photo">Photos</span>
           </div>
           <div class="card-body">
             <div class="card-title">देवकुंडी</div>
-            <span class="card-title-en">Dev Kundi Ritual</span>
-            <div class="card-cta">Open Album <i class="cta-arrow">→</i></div>
+            <span class="card-en">Dev Kundi Ritual</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
           </div>
         </a>
       </div>
     </div>
 
-    <!-- 04: मेहेंदी -->
-    <div class="fn-group">
-      <div class="fn-header">
-        <span class="fn-num">04</span>
-        <h2 class="fn-title">मेहेंदी</h2>
-        <div class="fn-rule"></div>
+    <!-- ── 05: मेहेंदी ── -->
+    <div class="fn-block reveal" id="fn05">
+      <div class="fn-header" onclick="toggleFn('fn05')">
+        <span class="fn-num">05</span>
+        <span class="fn-icon">🌿</span>
+        <div class="fn-text">
+          <div class="fn-title">मेहेंदी</div>
+          <span class="fn-sub">Mehndi Ceremony</span>
+        </div>
+        <span class="fn-count">1 album · 1 reel</span>
+        <span class="fn-arrow">▾</span>
       </div>
-      <div class="cards-grid">
-        <a class="card" href="https://photos.app.goo.gl/sSBS8yzh1my7hADw5" target="_blank" rel="noopener">
-          <div class="card-thumb photo">
-            <div class="thumb-hatch"></div>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/sSBS8yzh1my7hADw5" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-photo">
+            <div class="thumb-pattern"></div>
             <span class="thumb-icon">📷</span>
-            <span class="type-tag photo">Photos</span>
+            <span class="card-badge badge-photo">Photos</span>
           </div>
           <div class="card-body">
             <div class="card-title">मेहेंदी फोटो</div>
-            <span class="card-title-en">Mehndi Ceremony Photos</span>
-            <div class="card-cta">Open Album <i class="cta-arrow">→</i></div>
+            <span class="card-en">Mehndi Ceremony Photos</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
           </div>
         </a>
-        <a class="card" href="https://photos.app.goo.gl/AVrBS1dcNZeHKgRb6" target="_blank" rel="noopener">
-          <div class="card-thumb reel">
-            <div class="thumb-hatch"></div>
+        <a class="card" href="https://photos.app.goo.gl/AVrBS1dcNZeHKgRb6" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-reel">
+            <div class="thumb-pattern"></div>
+            <div class="thumb-ring"></div><div class="thumb-ring"></div><div class="thumb-ring"></div>
             <span class="thumb-icon">🎬</span>
-            <span class="type-tag reel">Reel</span>
+            <span class="card-badge badge-reel">Reel</span>
           </div>
           <div class="card-body">
             <div class="card-title">मेहेंदी रील</div>
-            <span class="card-title-en">Mehndi Highlight Reel</span>
-            <div class="card-cta">Watch Reel <i class="cta-arrow">→</i></div>
+            <span class="card-en">Mehndi Highlight Reel</span>
+            <div class="card-cta">Reel पहा <span class="c-arr">→</span></div>
           </div>
         </a>
       </div>
     </div>
 
-    <!-- 05: साखरपुडा, हळद, लग्न आणि बिदाई -->
-    <div class="fn-group">
-      <div class="fn-header">
-        <span class="fn-num">05</span>
-        <h2 class="fn-title" style="font-size:clamp(15px,3.5vw,22px);">साखरपुडा · हळद · लग्न · बिदाई</h2>
-        <div class="fn-rule"></div>
+    <!-- ── 06: खामगाव स्वागत ── -->
+    <div class="fn-block reveal" id="fn06">
+      <div class="fn-header" onclick="toggleFn('fn06')">
+        <span class="fn-num">06</span>
+        <span class="fn-icon">🌹</span>
+        <div class="fn-text">
+          <div class="fn-title">खामगावातील प्रेमळ स्वागत</div>
+          <span class="fn-sub">Warm Welcome at Khamgaon · 25 April 2026</span>
+        </div>
+        <span class="fn-date-tag">25 एप्रिल</span>
+        <span class="fn-count">1 album</span>
+        <span class="fn-arrow">▾</span>
       </div>
-      <div class="cards-grid">
-        <a class="card" href="https://photos.app.goo.gl/YBgSvhp44zu3MSvn9" target="_blank" rel="noopener">
-          <div class="card-thumb photo">
-            <div class="thumb-hatch"></div>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/8XyxqkgYcQzGhyvF8" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-special">
+            <div class="thumb-pattern"></div>
+            <span class="thumb-icon">🌹</span>
+            <span class="card-badge badge-special">Welcome</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">खामगावातील प्रेमळ स्वागत</div>
+            <span class="card-en">Welcome at Khamgaon</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── 07: साखरपुडा ── -->
+    <div class="fn-block reveal" id="fn07">
+      <div class="fn-header" onclick="toggleFn('fn07')">
+        <span class="fn-num">07</span>
+        <span class="fn-icon">💍</span>
+        <div class="fn-text">
+          <div class="fn-title">साखरपुडा</div>
+          <span class="fn-sub">Engagement Ceremony</span>
+        </div>
+        <span class="fn-count">1 album · 1 reel</span>
+        <span class="fn-arrow">▾</span>
+      </div>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/iYiZLQP7i6ALYi449" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-photo">
+            <div class="thumb-pattern"></div>
             <span class="thumb-icon">📷</span>
-            <span class="type-tag photo">Photos</span>
+            <span class="card-badge badge-photo">Photos</span>
           </div>
           <div class="card-body">
-            <div class="card-title">साखरपुडा, हळद, लग्न आणि बिदाई</div>
-            <span class="card-title-en">Engagement · Haldi · Wedding · Vidai</span>
-            <div class="card-cta">Open Album <i class="cta-arrow">→</i></div>
+            <div class="card-title">साखरपुडा फोटो</div>
+            <span class="card-en">Engagement Ceremony Photos</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
           </div>
         </a>
-        <a class="card" href="https://photos.app.goo.gl/rLqX1FMH8PVK5ddFA" target="_blank" rel="noopener">
-          <div class="card-thumb reel">
-            <div class="thumb-hatch"></div>
+        <a class="card" href="https://photos.app.goo.gl/XdCj6PVURabtDuwu9" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-reel">
+            <div class="thumb-pattern"></div>
+            <div class="thumb-ring"></div><div class="thumb-ring"></div><div class="thumb-ring"></div>
             <span class="thumb-icon">🎬</span>
-            <span class="type-tag reel">Reel</span>
-          </div>
-          <div class="card-body">
-            <div class="card-title">हळद रील</div>
-            <span class="card-title-en">Haldi Ceremony Reel</span>
-            <div class="card-cta">Watch Reel <i class="cta-arrow">→</i></div>
-          </div>
-        </a>
-        <a class="card" href="https://photos.app.goo.gl/XdCj6PVURabtDuwu9" target="_blank" rel="noopener">
-          <div class="card-thumb reel">
-            <div class="thumb-hatch"></div>
-            <span class="thumb-icon">🎬</span>
-            <span class="type-tag reel">Reel</span>
+            <span class="card-badge badge-reel">Reel</span>
           </div>
           <div class="card-body">
             <div class="card-title">साखरपुडा रील</div>
-            <span class="card-title-en">Engagement Highlight Reel</span>
-            <div class="card-cta">Watch Reel <i class="cta-arrow">→</i></div>
+            <span class="card-en">Engagement Highlight Reel</span>
+            <div class="card-cta">Reel पहा <span class="c-arr">→</span></div>
           </div>
         </a>
       </div>
     </div>
 
-    <!-- 06: शृती अमरावती गृहप्रवेश -->
-    <div class="fn-group">
-      <div class="fn-header">
-        <span class="fn-num">06</span>
-        <h2 class="fn-title">शृती अमरावती गृहप्रवेश</h2>
-        <div class="fn-rule"></div>
+    <!-- ── 08: हळद ── -->
+    <div class="fn-block reveal" id="fn08">
+      <div class="fn-header" onclick="toggleFn('fn08')">
+        <span class="fn-num">08</span>
+        <span class="fn-icon">🌼</span>
+        <div class="fn-text">
+          <div class="fn-title">हळद</div>
+          <span class="fn-sub">Haldi Ceremony</span>
+        </div>
+        <span class="fn-count">1 album · 1 reel</span>
+        <span class="fn-arrow">▾</span>
       </div>
-      <div class="cards-grid">
-        <a class="card" href="https://photos.app.goo.gl/KrqjMoMkr695ZKTR7" target="_blank" rel="noopener">
-          <div class="card-thumb photo">
-            <div class="thumb-hatch"></div>
-            <span class="thumb-icon">🏡</span>
-            <span class="type-tag photo">Photos</span>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/dvzvs7VqNvgTTpNo7" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-photo">
+            <div class="thumb-pattern"></div>
+            <span class="thumb-icon">📷</span>
+            <span class="card-badge badge-photo">Photos</span>
           </div>
           <div class="card-body">
-            <div class="card-title">गृहप्रवेश</div>
-            <span class="card-title-en">Shruti's Griha Pravesh · Amravati</span>
-            <div class="card-cta">Open Album <i class="cta-arrow">→</i></div>
+            <div class="card-title">हळद फोटो</div>
+            <span class="card-en">Haldi Ceremony Photos</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
+          </div>
+        </a>
+        <a class="card" href="https://photos.app.goo.gl/rLqX1FMH8PVK5ddFA" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-reel">
+            <div class="thumb-pattern"></div>
+            <div class="thumb-ring"></div><div class="thumb-ring"></div><div class="thumb-ring"></div>
+            <span class="thumb-icon">🎬</span>
+            <span class="card-badge badge-reel">Reel</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">हळद रील</div>
+            <span class="card-en">Haldi Highlight Reel</span>
+            <div class="card-cta">Reel पहा <span class="c-arr">→</span></div>
           </div>
         </a>
       </div>
     </div>
 
-    <!-- 07: न्हाणोरा -->
-    <div class="fn-group">
-      <div class="fn-header">
-        <span class="fn-num">07</span>
-        <h2 class="fn-title">न्हाणोरा</h2>
-        <div class="fn-rule"></div>
+    <!-- ── 09: संगीत ── -->
+    <div class="fn-block reveal" id="fn09">
+      <div class="fn-header" onclick="toggleFn('fn09')">
+        <span class="fn-num">09</span>
+        <span class="fn-icon">🎵</span>
+        <div class="fn-text">
+          <div class="fn-title">संगीत</div>
+          <span class="fn-sub">Sangeet Night</span>
+        </div>
+        <span class="fn-count">1 album</span>
+        <span class="fn-arrow">▾</span>
       </div>
-      <div class="cards-grid">
-        <a class="card" href="https://photos.app.goo.gl/dBfByL9sWdsvWVSa6" target="_blank" rel="noopener">
-          <div class="card-thumb photo">
-            <div class="thumb-hatch"></div>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/QU7JY8cxWj2yQqqu7" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-photo">
+            <div class="thumb-pattern"></div>
             <span class="thumb-icon">📷</span>
-            <span class="type-tag photo">Photos</span>
+            <span class="card-badge badge-photo">Photos</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">संगीत</div>
+            <span class="card-en">Sangeet Night</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── 10: लग्न ── -->
+    <div class="fn-block reveal" id="fn10">
+      <div class="fn-header" onclick="toggleFn('fn10')">
+        <span class="fn-num">10</span>
+        <span class="fn-icon">💒</span>
+        <div class="fn-text">
+          <div class="fn-title">लग्न</div>
+          <span class="fn-sub">Wedding Ceremony · The Big Day</span>
+        </div>
+        <span class="fn-date-tag">26 एप्रिल 2026 ✦</span>
+        <span class="fn-count">1 album</span>
+        <span class="fn-arrow">▾</span>
+      </div>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/6LTjY2HUgrGpeXgp9" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-photo" style="background: linear-gradient(145deg, #1e1208, #2e1c0a);">
+            <div class="thumb-pattern"></div>
+            <span class="thumb-icon">💒</span>
+            <span class="card-badge badge-photo">Photos</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">लग्न · २६ एप्रिल २०२६</div>
+            <span class="card-en">The Wedding Ceremony</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── 11: बिदाई ── -->
+    <div class="fn-block reveal" id="fn11">
+      <div class="fn-header" onclick="toggleFn('fn11')">
+        <span class="fn-num">11</span>
+        <span class="fn-icon">🌸</span>
+        <div class="fn-text">
+          <div class="fn-title">बिदाई</div>
+          <span class="fn-sub">Vidai · A Bittersweet Farewell</span>
+        </div>
+        <span class="fn-count">1 album</span>
+        <span class="fn-arrow">▾</span>
+      </div>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/YBgSvhp44zu3MSvn9" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-photo">
+            <div class="thumb-pattern"></div>
+            <span class="thumb-icon">🌸</span>
+            <span class="card-badge badge-photo">Photos</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">बिदाई</div>
+            <span class="card-en">Vidai Ceremony</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── 12: गृहप्रवेश ── -->
+    <div class="fn-block reveal" id="fn12">
+      <div class="fn-header" onclick="toggleFn('fn12')">
+        <span class="fn-num">12</span>
+        <span class="fn-icon">🏡</span>
+        <div class="fn-text">
+          <div class="fn-title">शृती अमरावती गृहप्रवेश</div>
+          <span class="fn-sub">Griha Pravesh · Amravati</span>
+        </div>
+        <span class="fn-count">1 album</span>
+        <span class="fn-arrow">▾</span>
+      </div>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/KrqjMoMkr695ZKTR7" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-special">
+            <div class="thumb-pattern"></div>
+            <span class="thumb-icon">🏡</span>
+            <span class="card-badge badge-special">Griha Pravesh</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">शृती अमरावती गृहप्रवेश</div>
+            <span class="card-en">Shruti's Home Welcoming · Amravati</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── 13: न्हाणोरा ── -->
+    <div class="fn-block reveal" id="fn13">
+      <div class="fn-header" onclick="toggleFn('fn13')">
+        <span class="fn-num">13</span>
+        <span class="fn-icon">🌺</span>
+        <div class="fn-text">
+          <div class="fn-title">न्हाणोरा</div>
+          <span class="fn-sub">Nhanoura Ceremony</span>
+        </div>
+        <span class="fn-count">1 album</span>
+        <span class="fn-arrow">▾</span>
+      </div>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/dBfByL9sWdsvWVSa6" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-photo">
+            <div class="thumb-pattern"></div>
+            <span class="thumb-icon">📷</span>
+            <span class="card-badge badge-photo">Photos</span>
           </div>
           <div class="card-body">
             <div class="card-title">न्हाणोरा</div>
-            <span class="card-title-en">Nhanoura Ceremony</span>
-            <div class="card-cta">Open Album <i class="cta-arrow">→</i></div>
+            <span class="card-en">Nhanoura Ceremony</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
           </div>
         </a>
       </div>
     </div>
 
-    <!-- 08: Candid Photos -->
-    <div class="fn-group">
-      <div class="fn-header">
-        <span class="fn-num">08</span>
-        <h2 class="fn-title" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;">Candid Collection</h2>
-        <div class="fn-rule"></div>
+    <!-- ── 14: Candid ── -->
+    <div class="fn-block reveal" id="fn14">
+      <div class="fn-header" onclick="toggleFn('fn14')">
+        <span class="fn-num">14</span>
+        <span class="fn-icon">✨</span>
+        <div class="fn-text">
+          <div class="fn-title">Candid Collection</div>
+          <span class="fn-sub">अनमोल क्षण · Unscripted Moments</span>
+        </div>
+        <span class="fn-count">1 album</span>
+        <span class="fn-arrow">▾</span>
       </div>
-      <div class="cards-grid">
-        <a class="card" href="https://photos.app.goo.gl/E81E8xcN1UNabG4p9" target="_blank" rel="noopener">
-          <div class="card-thumb candid">
-            <div class="thumb-hatch" style="background-image:repeating-linear-gradient(135deg,#6a9e80 0px,#6a9e80 1px,transparent 1px,transparent 12px);"></div>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/E81E8xcN1UNabG4p9" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-special">
+            <div class="thumb-pattern"></div>
             <span class="thumb-icon">✨</span>
-            <span class="type-tag candid">Candid</span>
+            <span class="card-badge badge-candid">Candid</span>
           </div>
           <div class="card-body">
-            <div class="card-title" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;">Candid Moments</div>
-            <span class="card-title-en">Unscripted, real & precious moments</span>
-            <div class="card-cta">Open Album <i class="cta-arrow">→</i></div>
+            <div class="card-title">Candid Moments</div>
+            <span class="card-en">मनमोकळे क्षण · Real & Precious</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
           </div>
         </a>
       </div>
@@ -722,47 +1357,218 @@ body {
 
   </div><!-- /panel-groom -->
 
-  <!-- ══ BRIDE'S SIDE PANEL ══ -->
+  <!-- ══ BRIDE PANEL ══ -->
   <div class="panel" id="panel-bride">
-
-    <div class="section-intro">
-      <div class="section-avatar b">👰</div>
+    <div class="section-intro reveal">
+      <div class="s-avatar b">👰</div>
       <div>
-        <div class="section-label">Photographer · वधू पक्ष</div>
-        <div class="section-name">Bride's Side</div>
-        <div class="section-note">Gallery arriving soon · लवकरच येईल</div>
+        <div class="s-label">Photographer · वधू पक्ष</div>
+        <div class="s-name">वधू पक्षाचे फोटो</div>
+        <div class="s-note">शृती · Gallery येत आहे · Coming Soon</div>
       </div>
     </div>
-
-    <div class="coming-soon">
-      <div class="coming-icon">🌸</div>
-      <h3 class="coming-title">Coming Soon · लवकरच</h3>
-      <p class="coming-text">
-        The bride's side photos &amp; reels are being lovingly curated.<br>
-        वधू पक्षाचे फोटो आणि रील लवकरच येतील.<br><br>
-        This space will bloom with beautiful memories very soon.
+    <div class="coming-soon reveal">
+      <div class="cs-icon">🌸</div>
+      <div class="cs-title">Coming Soon</div>
+      <div class="cs-marathi">लवकरच येईल</div>
+      <p class="cs-text">
+        वधू पक्षाचे सुंदर फोटो आणि रील<br>
+        lovingly curated होत आहेत.<br><br>
+        <span style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);">
+          This space will shine with memories very soon.
+        </span>
       </p>
     </div>
-
-  </div><!-- /panel-bride -->
-
-</main>
-
-<!-- ════════════════════════════════
-     FOOTER
-════════════════════════════════ -->
-<footer class="site-footer">
-  <div class="ornament" style="justify-content:center;margin-bottom:16px;">
-    <div class="ornament-line rev" style="width:40px;background:linear-gradient(to right,transparent,rgba(201,169,110,0.3));"></div>
-    <div class="ornament-dia" style="width:6px;height:6px;animation:none;"></div>
-    <div class="ornament-line" style="width:40px;background:linear-gradient(to left,transparent,rgba(201,169,110,0.3));"></div>
   </div>
-  <p class="footer-marathi">आपल्या प्रेमाने आणि आशीर्वादाने धन्यवाद</p>
-  <p class="footer-en">Thank you for being part of our story</p>
-  <p class="footer-date">26 April 2026 · Khamgaon</p>
+
+</main><!-- /main -->
+
+<!-- ─── FOOTER ─── -->
+<footer class="site-footer">
+  <div class="f-ornament">
+    <div class="f-line r"></div>
+    <div class="f-dia"></div>
+    <div class="f-line"></div>
+  </div>
+  <p class="f-marathi">आपल्या प्रेमाने आणि आशीर्वादाने धन्यवाद</p>
+  <p class="f-en">Thank you for being part of our story</p>
+  <p class="f-date">मिथिलेश & शृती · २६ एप्रिल २०२६ · खामगाव · महाराष्ट्र</p>
 </footer>
 
+</div><!-- /site -->
+
 <script>
+/* ══════════════════════════════════
+   INTRO
+══════════════════════════════════ */
+function enterSite() {
+  document.getElementById('intro').classList.add('hide');
+  const site = document.getElementById('site');
+  site.style.opacity = '1';
+}
+// Auto-enter after 5s
+setTimeout(() => {
+  if (!document.getElementById('intro').classList.contains('hide')) enterSite();
+}, 5000);
+
+/* ══════════════════════════════════
+   CUSTOM CURSOR
+══════════════════════════════════ */
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+});
+function animRing() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+document.querySelectorAll('a, button, .nav-tab, .fn-header, .stat-item').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cur.style.width = '20px'; cur.style.height = '20px';
+    ring.style.width = '48px'; ring.style.height = '48px';
+  });
+  el.addEventListener('mouseleave', () => {
+    cur.style.width = '12px'; cur.style.height = '12px';
+    ring.style.width = '36px'; ring.style.height = '36px';
+  });
+});
+
+/* ══════════════════════════════════
+   SPARKLES ON CLICK
+══════════════════════════════════ */
+const sparkSymbols = ['✦','✧','⋆','✿','❋','◇','✺'];
+document.addEventListener('click', e => {
+  for (let i = 0; i < 6; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.textContent = sparkSymbols[Math.floor(Math.random() * sparkSymbols.length)];
+    const angle = (Math.PI * 2 / 6) * i + Math.random() * 0.5;
+    const dist = 30 + Math.random() * 40;
+    s.style.left = e.clientX + 'px';
+    s.style.top  = e.clientY + 'px';
+    s.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+    s.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+    s.style.color = `hsl(${40 + Math.random()*20}, 80%, ${60 + Math.random()*20}%)`;
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 1000);
+  }
+});
+
+/* ══════════════════════════════════
+   PARTICLE CANVAS (gold dust)
+══════════════════════════════════ */
+(function() {
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * W;
+      this.y = Math.random() * H;
+      this.vx = (Math.random() - 0.5) * 0.3;
+      this.vy = -0.2 - Math.random() * 0.4;
+      this.r  = 0.5 + Math.random() * 1.5;
+      this.life = 0;
+      this.maxLife = 150 + Math.random() * 200;
+      this.gold = Math.random() > 0.5;
+    }
+    update() {
+      this.x += this.vx; this.y += this.vy; this.life++;
+      if (this.life > this.maxLife || this.y < -10) this.reset();
+    }
+    draw() {
+      const a = Math.sin(this.life / this.maxLife * Math.PI) * 0.4;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = this.gold
+        ? `rgba(201,169,110,${a})`
+        : `rgba(250,240,220,${a * 0.5})`;
+      ctx.fill();
+    }
+  }
+  for (let i = 0; i < 80; i++) { const p = new Particle(); p.life = Math.random() * p.maxLife; particles.push(p); }
+  function loop() {
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+/* ══════════════════════════════════
+   PROGRESS BAR
+══════════════════════════════════ */
+window.addEventListener('scroll', () => {
+  const s = document.documentElement;
+  const pct = (s.scrollTop / (s.scrollHeight - s.clientHeight)) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+});
+
+/* ══════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════ */
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      e.target.style.transitionDelay = (i * 0.04) + 's';
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+/* ══════════════════════════════════
+   ACCORDION TOGGLE
+══════════════════════════════════ */
+let openCount = 0;
+function toggleFn(id) {
+  const block = document.getElementById(id);
+  const wasOpen = block.classList.contains('open');
+  block.classList.toggle('open');
+  openCount += wasOpen ? -1 : 1;
+  updateCount();
+}
+function updateCount() {
+  const total = document.querySelectorAll('#panel-groom .fn-block').length;
+  document.getElementById('open-count').textContent = `${openCount} / ${total} उघडे`;
+}
+
+/* ══════════════════════════════════
+   EXPAND / COLLAPSE ALL
+══════════════════════════════════ */
+let allOpen = false;
+function toggleAll() {
+  allOpen = !allOpen;
+  const blocks = document.querySelectorAll('#panel-groom .fn-block');
+  blocks.forEach(b => {
+    if (allOpen) b.classList.add('open');
+    else b.classList.remove('open');
+  });
+  openCount = allOpen ? blocks.length : 0;
+  updateCount();
+  document.getElementById('expand-text').textContent = allOpen ? 'सर्व बंद करा' : 'सर्व उघडा';
+  document.getElementById('expand-icon').textContent = allOpen ? '◆' : '✦';
+  document.getElementById('expand-btn').classList.toggle('active-btn', allOpen);
+}
+updateCount();
+
+/* ══════════════════════════════════
+   TAB SWITCH
+══════════════════════════════════ */
 function switchTab(side) {
   document.getElementById('tab-groom').classList.toggle('active', side === 'groom');
   document.getElementById('tab-bride').classList.toggle('active', side === 'bride');
@@ -770,7 +1576,17 @@ function switchTab(side) {
   document.getElementById('panel-bride').classList.toggle('active', side === 'bride');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-</script>
 
+/* ══════════════════════════════════
+   TOAST
+══════════════════════════════════ */
+let toastTimer;
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2000);
+}
+</script>
 </body>
 </html>
