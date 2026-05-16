@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>आमच्या लग्नाच्या आठवणी · 26 April 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Tiro+Devanagari+Marathi:ital@0;1&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #C9A96E;
+  --gold-light: #E8D5B0;
+  --gold-dark: #7A5C1E;
+  --gold-faint: rgba(201,169,110,0.12);
+  --cream: #FBF7F1;
+  --parchment: #F3EBE0;
+  --ink: #1C1A17;
+  --ink-muted: #5C5449;
+  --ink-faint: #9C9189;
+  --deep: #120F0B;
+  --groom-accent: #3D5A73;
+  --groom-light: rgba(61,90,115,0.12);
+  --bride-accent: #A85C72;
+  --bride-light: rgba(168,92,114,0.1);
+  --card-border: rgba(201,169,110,0.2);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-weight: 300;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0px) rotate(45deg); }
+  50%      { transform: translateY(-6px) rotate(45deg); }
+}
+
+/* ── HEADER ── */
+.site-header {
+  position: relative;
+  text-align: center;
+  padding: 56px 24px 52px;
+  background: var(--deep);
+  overflow: hidden;
+}
+.header-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% -10%, rgba(201,169,110,0.22) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 15% 100%, rgba(201,169,110,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 85% 100%, rgba(201,169,110,0.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+.header-grid {
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(201,169,110,0.03) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(201,169,110,0.03) 40px);
+  pointer-events: none;
+}
+.header-content { position: relative; z-index: 1; animation: fadeUp 0.9s ease both; }
+
+.ornament {
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; margin-bottom: 22px;
+}
+.ornament-line {
+  height: 1px; width: 64px;
+  background: linear-gradient(to right, transparent, var(--gold));
+}
+.ornament-line.rev { background: linear-gradient(to left, transparent, var(--gold)); }
+.ornament-dia {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  animation: float 3s ease-in-out infinite;
+}
+.ornament-dot {
+  width: 4px; height: 4px;
+  background: rgba(201,169,110,0.5);
+  border-radius: 50%;
+}
+
+.header-eyebrow {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400; font-size: 10px;
+  letter-spacing: 5px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 18px;
+}
+
+.header-marathi {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: clamp(14px, 3vw, 18px);
+  color: rgba(232,213,176,0.65);
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.header-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(42px, 10vw, 84px);
+  line-height: 1;
+  color: #FAF7F2;
+  margin-bottom: 4px;
+}
+.header-title em {
+  font-style: italic;
+  background: linear-gradient(120deg, var(--gold-light), var(--gold), var(--gold-light));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+.header-names {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(22px, 5vw, 36px);
+  font-style: italic;
+  color: rgba(250,247,242,0.85);
+  margin: 14px 0 6px;
+  letter-spacing: 1px;
+}
+.header-names .amp {
+  color: var(--gold);
+  font-size: 1.2em;
+  margin: 0 8px;
+}
+
+.header-date {
+  font-family: 'Jost', sans-serif;
+  font-size: 11px; letter-spacing: 4px;
+  color: var(--ink-faint); text-transform: uppercase;
+  margin-top: 18px;
+}
+.header-date span {
+  display: inline-block;
+  margin: 0 10px;
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+/* ── NAV ── */
+.nav-wrap {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--deep);
+  border-bottom: 1px solid rgba(201,169,110,0.18);
+  backdrop-filter: blur(12px);
+}
+.nav-inner {
+  display: flex; max-width: 960px;
+  margin: 0 auto; padding: 0 20px;
+}
+.nav-tab {
+  flex: 1; padding: 15px 10px;
+  text-align: center; cursor: pointer;
+  font-size: 10px; letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border-bottom: 2px solid transparent;
+  transition: all 0.25s; user-select: none;
+}
+.nav-tab:hover { color: var(--gold-light); }
+.nav-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+.tab-pip {
+  display: inline-block;
+  width: 5px; height: 5px; border-radius: 50%;
+  margin-right: 7px; vertical-align: middle;
+  position: relative; top: -1px;
+}
+.tab-pip.g { background: #4A7A9B; }
+.tab-pip.b { background: var(--bride-accent); }
+
+/* ── MAIN ── */
+.main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 52px 20px 100px;
+}
+
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* ── SECTION INTRO ── */
+.section-intro {
+  display: flex; align-items: center; gap: 18px;
+  margin-bottom: 44px; padding-bottom: 28px;
+  border-bottom: 1px solid rgba(201,169,110,0.2);
+  animation: fadeUp 0.6s ease both;
+}
+.section-avatar {
+  flex-shrink: 0; width: 56px; height: 56px;
+  border-radius: 50%; display: flex;
+  align-items: center; justify-content: center;
+  font-size: 24px;
+}
+.section-avatar.g {
+  background: var(--groom-light);
+  border: 1px solid rgba(61,90,115,0.3);
+}
+.section-avatar.b {
+  background: var(--bride-light);
+  border: 1px solid rgba(168,92,114,0.3);
+}
+.section-label {
+  font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--ink-faint);
+  margin-bottom: 3px;
+}
+.section-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px; font-weight: 400; color: var(--ink);
+}
+.section-note {
+  font-size: 12px; color: var(--ink-faint);
+  margin-top: 3px; font-style: italic;
+}
+
+/* ── FUNCTION GROUP ── */
+.fn-group {
+  margin-bottom: 52px;
+  animation: fadeUp 0.5s ease both;
+}
+.fn-group:nth-child(2) { animation-delay: 0.05s; }
+.fn-group:nth-child(3) { animation-delay: 0.1s; }
+.fn-group:nth-child(4) { animation-delay: 0.15s; }
+.fn-group:nth-child(5) { animation-delay: 0.2s; }
+
+.fn-header {
+  display: flex; align-items: center;
+  gap: 14px; margin-bottom: 20px;
+}
+.fn-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px; font-style: italic;
+  color: var(--gold); flex-shrink: 0; min-width: 20px;
+}
+.fn-title {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: 400; color: var(--ink); flex-shrink: 0;
+}
+.fn-title-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 13px;
+  color: var(--ink-faint); margin-left: 6px;
+}
+.fn-rule {
+  flex: 1; height: 1px;
+  background: linear-gradient(to right, rgba(201,169,110,0.35), transparent);
+}
+
+/* ── CARDS GRID ── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 14px;
+}
+
+/* ── CARD ── */
+.card {
+  border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--card-border);
+  background: #fff;
+  text-decoration: none; display: block;
+  transition: transform 0.22s cubic-bezier(.2,.8,.4,1),
+              box-shadow 0.22s ease,
+              border-color 0.22s ease;
+  cursor: pointer;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(28,26,23,0.1), 0 4px 12px rgba(201,169,110,0.12);
+  border-color: rgba(201,169,110,0.5);
+}
+
+.card-thumb {
+  height: 130px; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.card-thumb.photo {
+  background: linear-gradient(145deg, #FDF5EA 0%, #F0E3CC 100%);
+}
+.card-thumb.reel {
+  background: linear-gradient(145deg, #1C1814 0%, #2A2218 100%);
+}
+.card-thumb.candid {
+  background: linear-gradient(145deg, #EEF3F0 0%, #DDE8E2 100%);
+}
+
+.thumb-hatch {
+  position: absolute; inset: 0; opacity: 0.05;
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--gold) 0px, var(--gold) 1px,
+    transparent 1px, transparent 12px
+  );
+}
+.thumb-icon {
+  font-size: 38px; position: relative; z-index: 1;
+  transition: transform 0.2s;
+}
+.card:hover .thumb-icon { transform: scale(1.08); }
+
+.type-tag {
+  position: absolute; top: 10px; right: 10px;
+  font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase; padding: 3px 9px;
+  border-radius: 20px; font-weight: 500; font-family: 'Jost', sans-serif;
+}
+.type-tag.photo {
+  background: rgba(201,169,110,0.16);
+  color: var(--gold-dark);
+  border: 1px solid rgba(201,169,110,0.4);
+}
+.type-tag.reel {
+  background: rgba(201,169,110,0.18);
+  color: var(--gold-light);
+  border: 1px solid rgba(201,169,110,0.3);
+}
+.type-tag.candid {
+  background: rgba(100,150,120,0.15);
+  color: #3a6b50;
+  border: 1px solid rgba(100,150,120,0.35);
+}
+
+.card-body { padding: 15px 17px 17px; }
+.card-title {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 16px; color: var(--ink);
+  margin-bottom: 4px; line-height: 1.3;
+}
+.card-title-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 12px;
+  color: var(--ink-faint); margin-bottom: 10px;
+  display: block;
+}
+.card-cta {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 10px; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--gold-dark);
+  font-weight: 500; font-family: 'Jost', sans-serif;
+}
+.cta-arrow { transition: transform 0.2s; font-style: normal; }
+.card:hover .cta-arrow { transform: translateX(4px); }
+
+/* ── DIVIDER ── */
+.section-divider {
+  display: flex; align-items: center;
+  gap: 16px; margin: 48px 0 36px;
+}
+.div-line {
+  flex: 1; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,169,110,0.3), transparent);
+}
+.div-ornament {
+  display: flex; gap: 5px; align-items: center;
+}
+.div-d {
+  width: 5px; height: 5px; background: rgba(201,169,110,0.5);
+  transform: rotate(45deg);
+}
+
+/* ── COMING SOON ── */
+.coming-soon {
+  text-align: center; padding: 80px 24px;
+  border: 1px dashed rgba(168,92,114,0.3);
+  border-radius: 18px;
+  background: rgba(168,92,114,0.025);
+  animation: fadeUp 0.6s ease both;
+}
+.coming-icon { font-size: 44px; margin-bottom: 18px; }
+.coming-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 300;
+  color: var(--bride-accent); margin-bottom: 10px;
+}
+.coming-text {
+  font-size: 13px; color: var(--ink-faint);
+  line-height: 1.8;
+}
+
+/* ── FOOTER ── */
+.site-footer {
+  background: var(--deep);
+  text-align: center;
+  padding: 36px 24px;
+  border-top: 1px solid rgba(201,169,110,0.12);
+}
+.footer-marathi {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 16px; color: var(--gold);
+  margin-bottom: 8px;
+}
+.footer-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 14px;
+  color: rgba(250,247,242,0.4);
+}
+.footer-date {
+  font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(156,145,137,0.5);
+  margin-top: 14px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 540px) {
+  .cards-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .card-thumb { height: 110px; }
+  .thumb-icon { font-size: 28px; }
+  .card-body { padding: 11px 13px 13px; }
+  .card-title { font-size: 13px; }
+  .fn-title { font-size: 17px; }
+  .section-intro { gap: 12px; }
+  .header-title { font-size: 40px; }
+  .header-names { font-size: 22px; }
+}
+@media (max-width: 360px) {
+  .cards-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════
+     HEADER
+════════════════════════════════ -->
+<header class="site-header">
+  <div class="header-bg"></div>
+  <div class="header-grid"></div>
+  <div class="header-content">
+    <div class="ornament">
+      <div class="ornament-line rev"></div>
+      <div class="ornament-dot"></div>
+      <div class="ornament-dia"></div>
+      <div class="ornament-dot"></div>
+      <div class="ornament-line"></div>
+    </div>
+    <p class="header-eyebrow">A Lifetime of Memories</p>
+    <p class="header-marathi">आमच्या लग्नाच्या आठवणी</p>
+    <h1 class="header-title"><em>Wedding</em><br>Celebrations</h1>
+    <p class="header-names">Mithilesh <span class="amp">&amp;</span> Shruti</p>
+    <div class="ornament" style="margin-top:20px;margin-bottom:0;">
+      <div class="ornament-line rev" style="width:40px;"></div>
+      <div class="ornament-dot"></div>
+      <div class="ornament-line" style="width:40px;"></div>
+    </div>
+    <p class="header-date">२६ एप्रिल <span>·</span> 26 April 2026 <span>·</span> Khamgaon</p>
+  </div>
+</header>
+
+<!-- ════════════════════════════════
+     NAV
+════════════════════════════════ -->
+<nav class="nav-wrap">
+  <div class="nav-inner">
+    <div class="nav-tab active" onclick="switchTab('groom')" id="tab-groom">
+      <span class="tab-pip g"></span>वर पक्ष · Groom's Side
+    </div>
+    <div class="nav-tab" onclick="switchTab('bride')" id="tab-bride">
+      <span class="tab-pip b"></span>वधू पक्ष · Bride's Side
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════
+     MAIN
+════════════════════════════════ -->
+<main class="main">
+
+  <!-- ══ GROOM'S SIDE PANEL ══ -->
+  <div class="panel active" id="panel-groom">
+
+    <div class="section-intro">
+      <div class="section-avatar g">🤵</div>
+      <div>
+        <div class="section-label">Photographer · वर पक्ष</div>
+        <div class="section-name">Groom's Side</div>
+        <div class="section-note">All functions · Complete gallery</div>
+      </div>
+    </div>
+
+    <!-- 01: गोंधळ आणि वर जेवण -->
+    <div class="fn-group">
+      <div class="fn-header">
+        <span class="fn-num">01</span>
+        <h2 class="fn-title">गोंधळ आणि वर जेवण</h2>
+        <div class="fn-rule"></div>
+      </div>
+      <div class="cards-grid">
+        <a class="card" href="https://photos.app.goo.gl/fQZJH7B8MvuLvrjKA" target="_blank" rel="noopener">
+          <div class="card-thumb photo">
+            <div class="thumb-hatch"></div>
+            <span class="thumb-icon">📷</span>
+            <span class="type-tag photo">Photos</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">गोंधळ आणि वर जेवण</div>
+            <span class="card-title-en">Gondhal & Groom's Feast</span>
+            <div class="card-cta">Open Album <i class="cta-arrow">→</i></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 02: मुहूर्त -->
+    <div class="fn-group">
+      <div class="fn-header">
+        <span class="fn-num">02</span>
+        <h2 class="fn-title">मुहूर्त</h2>
+        <div class="fn-rule"></div>
+      </div>
+      <div class="cards-grid">
+        <a class="card" href="https://photos.app.goo.gl/QxMqYUXPpyxAUsEBA" target="_blank" rel="noopener">
+          <div class="card-thumb photo">
+            <div class="thumb-hatch"></div>
+            <span class="thumb-icon">📷</span>
+            <span class="type-tag photo">Photos</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">मुहूर्त</div>
+            <span class="card-title-en">Auspicious Ceremony</span>
+            <div class="card-cta">Open Album <i class="cta-arrow">→</i></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 03: देवकुंडी -->
+    <div class="fn-group">
+      <div class="fn-header">
+        <span class="fn-num">03</span>
+        <h2 class="fn-title">देवकुंडी</h2>
+        <div class="fn-rule"></div>
+      </div>
+      <div class="cards-grid">
+        <a class="card" href="https://photos.app.goo.gl/Gcyxk2EuyaX9HsCe8" target="_blank" rel="noopener">
+          <div class="card-thumb photo">
+            <div class="thumb-hatch"></div>
+            <span class="thumb-icon">📷</span>
+            <span class="type-tag photo">Photos</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">देवकुंडी</div>
+            <span class="card-title-en">Dev Kundi Ritual</span>
+            <div class="card-cta">Open Album <i class="cta-arrow">→</i></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 04: मेहेंदी -->
+    <div class="fn-group">
+      <div class="fn-header">
+        <span class="fn-num">04</span>
+        <h2 class="fn-title">मेहेंदी</h2>
+        <div class="fn-rule"></div>
+      </div>
+      <div class="cards-grid">
+        <a class="card" href="https://photos.app.goo.gl/sSBS8yzh1my7hADw5" target="_blank" rel="noopener">
+          <div class="card-thumb photo">
+            <div class="thumb-hatch"></div>
+            <span class="thumb-icon">📷</span>
+            <span class="type-tag photo">Photos</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">मेहेंदी फोटो</div>
+            <span class="card-title-en">Mehndi Ceremony Photos</span>
+            <div class="card-cta">Open Album <i class="cta-arrow">→</i></div>
+          </div>
+        </a>
+        <a class="card" href="https://photos.app.goo.gl/AVrBS1dcNZeHKgRb6" target="_blank" rel="noopener">
+          <div class="card-thumb reel">
+            <div class="thumb-hatch"></div>
+            <span class="thumb-icon">🎬</span>
+            <span class="type-tag reel">Reel</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">मेहेंदी रील</div>
+            <span class="card-title-en">Mehndi Highlight Reel</span>
+            <div class="card-cta">Watch Reel <i class="cta-arrow">→</i></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 05: साखरपुडा, हळद, लग्न आणि बिदाई -->
+    <div class="fn-group">
+      <div class="fn-header">
+        <span class="fn-num">05</span>
+        <h2 class="fn-title" style="font-size:clamp(15px,3.5vw,22px);">साखरपुडा · हळद · लग्न · बिदाई</h2>
+        <div class="fn-rule"></div>
+      </div>
+      <div class="cards-grid">
+        <a class="card" href="https://photos.app.goo.gl/YBgSvhp44zu3MSvn9" target="_blank" rel="noopener">
+          <div class="card-thumb photo">
+            <div class="thumb-hatch"></div>
+            <span class="thumb-icon">📷</span>
+            <span class="type-tag photo">Photos</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">साखरपुडा, हळद, लग्न आणि बिदाई</div>
+            <span class="card-title-en">Engagement · Haldi · Wedding · Vidai</span>
+            <div class="card-cta">Open Album <i class="cta-arrow">→</i></div>
+          </div>
+        </a>
+        <a class="card" href="https://photos.app.goo.gl/rLqX1FMH8PVK5ddFA" target="_blank" rel="noopener">
+          <div class="card-thumb reel">
+            <div class="thumb-hatch"></div>
+            <span class="thumb-icon">🎬</span>
+            <span class="type-tag reel">Reel</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">हळद रील</div>
+            <span class="card-title-en">Haldi Ceremony Reel</span>
+            <div class="card-cta">Watch Reel <i class="cta-arrow">→</i></div>
+          </div>
+        </a>
+        <a class="card" href="https://photos.app.goo.gl/XdCj6PVURabtDuwu9" target="_blank" rel="noopener">
+          <div class="card-thumb reel">
+            <div class="thumb-hatch"></div>
+            <span class="thumb-icon">🎬</span>
+            <span class="type-tag reel">Reel</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">साखरपुडा रील</div>
+            <span class="card-title-en">Engagement Highlight Reel</span>
+            <div class="card-cta">Watch Reel <i class="cta-arrow">→</i></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 06: शृती अमरावती गृहप्रवेश -->
+    <div class="fn-group">
+      <div class="fn-header">
+        <span class="fn-num">06</span>
+        <h2 class="fn-title">शृती अमरावती गृहप्रवेश</h2>
+        <div class="fn-rule"></div>
+      </div>
+      <div class="cards-grid">
+        <a class="card" href="https://photos.app.goo.gl/KrqjMoMkr695ZKTR7" target="_blank" rel="noopener">
+          <div class="card-thumb photo">
+            <div class="thumb-hatch"></div>
+            <span class="thumb-icon">🏡</span>
+            <span class="type-tag photo">Photos</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">गृहप्रवेश</div>
+            <span class="card-title-en">Shruti's Griha Pravesh · Amravati</span>
+            <div class="card-cta">Open Album <i class="cta-arrow">→</i></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 07: न्हाणोरा -->
+    <div class="fn-group">
+      <div class="fn-header">
+        <span class="fn-num">07</span>
+        <h2 class="fn-title">न्हाणोरा</h2>
+        <div class="fn-rule"></div>
+      </div>
+      <div class="cards-grid">
+        <a class="card" href="https://photos.app.goo.gl/dBfByL9sWdsvWVSa6" target="_blank" rel="noopener">
+          <div class="card-thumb photo">
+            <div class="thumb-hatch"></div>
+            <span class="thumb-icon">📷</span>
+            <span class="type-tag photo">Photos</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">न्हाणोरा</div>
+            <span class="card-title-en">Nhanoura Ceremony</span>
+            <div class="card-cta">Open Album <i class="cta-arrow">→</i></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 08: Candid Photos -->
+    <div class="fn-group">
+      <div class="fn-header">
+        <span class="fn-num">08</span>
+        <h2 class="fn-title" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;">Candid Collection</h2>
+        <div class="fn-rule"></div>
+      </div>
+      <div class="cards-grid">
+        <a class="card" href="https://photos.app.goo.gl/E81E8xcN1UNabG4p9" target="_blank" rel="noopener">
+          <div class="card-thumb candid">
+            <div class="thumb-hatch" style="background-image:repeating-linear-gradient(135deg,#6a9e80 0px,#6a9e80 1px,transparent 1px,transparent 12px);"></div>
+            <span class="thumb-icon">✨</span>
+            <span class="type-tag candid">Candid</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;">Candid Moments</div>
+            <span class="card-title-en">Unscripted, real & precious moments</span>
+            <div class="card-cta">Open Album <i class="cta-arrow">→</i></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /panel-groom -->
+
+  <!-- ══ BRIDE'S SIDE PANEL ══ -->
+  <div class="panel" id="panel-bride">
+
+    <div class="section-intro">
+      <div class="section-avatar b">👰</div>
+      <div>
+        <div class="section-label">Photographer · वधू पक्ष</div>
+        <div class="section-name">Bride's Side</div>
+        <div class="section-note">Gallery arriving soon · लवकरच येईल</div>
+      </div>
+    </div>
+
+    <div class="coming-soon">
+      <div class="coming-icon">🌸</div>
+      <h3 class="coming-title">Coming Soon · लवकरच</h3>
+      <p class="coming-text">
+        The bride's side photos &amp; reels are being lovingly curated.<br>
+        वधू पक्षाचे फोटो आणि रील लवकरच येतील.<br><br>
+        This space will bloom with beautiful memories very soon.
+      </p>
+    </div>
+
+  </div><!-- /panel-bride -->
+
+</main>
+
+<!-- ════════════════════════════════
+     FOOTER
+════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="ornament" style="justify-content:center;margin-bottom:16px;">
+    <div class="ornament-line rev" style="width:40px;background:linear-gradient(to right,transparent,rgba(201,169,110,0.3));"></div>
+    <div class="ornament-dia" style="width:6px;height:6px;animation:none;"></div>
+    <div class="ornament-line" style="width:40px;background:linear-gradient(to left,transparent,rgba(201,169,110,0.3));"></div>
+  </div>
+  <p class="footer-marathi">आपल्या प्रेमाने आणि आशीर्वादाने धन्यवाद</p>
+  <p class="footer-en">Thank you for being part of our story</p>
+  <p class="footer-date">26 April 2026 · Khamgaon</p>
+</footer>
+
+<script>
+function switchTab(side) {
+  document.getElementById('tab-groom').classList.toggle('active', side === 'groom');
+  document.getElementById('tab-bride').classList.toggle('active', side === 'bride');
+  document.getElementById('panel-groom').classList.toggle('active', side === 'groom');
+  document.getElementById('panel-bride').classList.toggle('active', side === 'bride');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
