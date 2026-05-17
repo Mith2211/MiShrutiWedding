@@ -624,6 +624,57 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
 }
 .card:hover .thumb-icon { transform: scale(1.15) rotate(-5deg); }
 
+/* ── Real photo thumbnail ── */
+.thumb-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  z-index: 1;
+  transition: transform 0.35s ease, opacity 0.3s;
+  opacity: 0.88;
+}
+.card:hover .thumb-img { transform: scale(1.06); opacity: 1; }
+
+/* ── Video reel thumbnail ── */
+.reel-thumb-wrap {
+  position: absolute; inset: 0; z-index: 1;
+  overflow: hidden;
+}
+.reel-thumb-img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  opacity: 0.72;
+  transition: transform 0.35s ease, opacity 0.3s;
+}
+.card:hover .reel-thumb-img { transform: scale(1.06); opacity: 0.88; }
+
+/* Play button overlay */
+.play-btn {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 3;
+}
+.play-circle {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(0,0,0,0.55);
+  border: 1.5px solid rgba(255,255,255,0.6);
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(4px);
+  transition: transform 0.2s, background 0.2s;
+}
+.card:hover .play-circle {
+  transform: scale(1.12);
+  background: rgba(201,169,110,0.35);
+  border-color: var(--gold);
+}
+.play-triangle {
+  width: 0; height: 0;
+  border-top:    8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left:   14px solid rgba(255,255,255,0.9);
+  margin-left: 3px;
+}
+
 .card-badge {
   position: absolute; top: 10px; right: 10px;
   font-size: 8px; letter-spacing: 2.5px; text-transform: uppercase;
@@ -854,7 +905,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
   </div>
   <p class="intro-marathi">शुभ विवाह · आठवणींचा खजिना</p>
   <h1 class="intro-title">Wedding<br><em style="font-style:italic;">Memories</em></h1>
-  <p class="intro-names">मिथिलेश <span class="intro-amp">&amp;</span> श्रृती</p>
+  <p class="intro-names">मिथिलेश <span class="intro-amp">&amp;</span> शृती</p>
   <p class="intro-date">२६ एप्रिल २०२६ · खामगाव · महाराष्ट्र</p>
   <button class="intro-btn" onclick="enterSite()"><span>आठवणी पहा →</span></button>
   <div class="intro-flowers">🪔 ✦ 🌸 ✦ 🪔</div>
@@ -978,8 +1029,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
       <div class="fn-cards">
         <a class="card" href="https://photos.app.goo.gl/K7eR5zSDJ4tsaJRRA" target="_blank" rel="noopener" onclick="showToast()">
           <div class="card-thumb thumb-photo">
-            <div class="thumb-pattern"></div>
-            <span class="thumb-icon">📷</span>
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=1FGEhatRqyUTs7SKGckb5-U18FBgcwWV7&sz=w400" alt="लग्न पक्का" loading="lazy">
             <span class="card-badge badge-photo">Photos</span>
           </div>
           <div class="card-body">
@@ -1007,8 +1057,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
       <div class="fn-cards">
         <a class="card" href="https://photos.app.goo.gl/fQZJH7B8MvuLvrjKA" target="_blank" rel="noopener" onclick="showToast()">
           <div class="card-thumb thumb-photo">
-            <div class="thumb-pattern"></div>
-            <span class="thumb-icon">📷</span>
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=169Aw-DJTJ4zD04GKerJ-pSxGlavErShS&sz=w400" alt="गोंधळ" loading="lazy">
             <span class="card-badge badge-photo">Photos</span>
           </div>
           <div class="card-body">
@@ -1036,8 +1085,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
       <div class="fn-cards">
         <a class="card" href="https://photos.app.goo.gl/QxMqYUXPpyxAUsEBA" target="_blank" rel="noopener" onclick="showToast()">
           <div class="card-thumb thumb-photo">
-            <div class="thumb-pattern"></div>
-            <span class="thumb-icon">📷</span>
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=14THAIHCshF3_1Z5E5kIiTXrudOUouoZy&sz=w400" alt="मुहूर्त" loading="lazy">
             <span class="card-badge badge-photo">Photos</span>
           </div>
           <div class="card-body">
@@ -1065,8 +1113,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
       <div class="fn-cards">
         <a class="card" href="https://photos.app.goo.gl/Gcyxk2EuyaX9HsCe8" target="_blank" rel="noopener" onclick="showToast()">
           <div class="card-thumb thumb-photo">
-            <div class="thumb-pattern"></div>
-            <span class="thumb-icon">📷</span>
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=13r0BlgwovI4HkWMB-sLNirfATQgQVEkf&sz=w400" alt="देवकुंडी" loading="lazy">
             <span class="card-badge badge-photo">Photos</span>
           </div>
           <div class="card-body">
@@ -1094,8 +1141,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
       <div class="fn-cards">
         <a class="card" href="https://photos.app.goo.gl/sSBS8yzh1my7hADw5" target="_blank" rel="noopener" onclick="showToast()">
           <div class="card-thumb thumb-photo">
-            <div class="thumb-pattern"></div>
-            <span class="thumb-icon">📷</span>
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=1yOdfb60j7bLiq7pdt7rX5HJQyireITQ_&sz=w400" alt="मेहेंदी" loading="lazy">
             <span class="card-badge badge-photo">Photos</span>
           </div>
           <div class="card-body">
@@ -1106,9 +1152,10 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
         </a>
         <a class="card" href="https://photos.app.goo.gl/AVrBS1dcNZeHKgRb6" target="_blank" rel="noopener" onclick="showToast()">
           <div class="card-thumb thumb-reel">
-            <div class="thumb-pattern"></div>
-            <div class="thumb-ring"></div><div class="thumb-ring"></div><div class="thumb-ring"></div>
-            <span class="thumb-icon">🎬</span>
+            <div class="reel-thumb-wrap">
+              <img class="reel-thumb-img" src="https://drive.google.com/thumbnail?id=1m7KDpXFSmL7jtntEVEt4iRBlWXt-XtCn&sz=w400" alt="मेहेंदी रील" loading="lazy">
+            </div>
+            <div class="play-btn"><div class="play-circle"><div class="play-triangle"></div></div></div>
             <span class="card-badge badge-reel">Reel</span>
           </div>
           <div class="card-body">
@@ -1137,8 +1184,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
       <div class="fn-cards">
         <a class="card" href="https://photos.app.goo.gl/8XyxqkgYcQzGhyvF8" target="_blank" rel="noopener" onclick="showToast()">
           <div class="card-thumb thumb-special">
-            <div class="thumb-pattern"></div>
-            <span class="thumb-icon">🌹</span>
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=1ZB0R1ujGMZQepOM9iBdfLEEshSe5gvyw&sz=w400" alt="खामगाव स्वागत" loading="lazy">
             <span class="card-badge badge-special">Welcome</span>
           </div>
           <div class="card-body">
@@ -1166,8 +1212,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
       <div class="fn-cards">
         <a class="card" href="https://photos.app.goo.gl/iYiZLQP7i6ALYi449" target="_blank" rel="noopener" onclick="showToast()">
           <div class="card-thumb thumb-photo">
-            <div class="thumb-pattern"></div>
-            <span class="thumb-icon">📷</span>
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=1NhYO-H8qwu2YBEEfLaObqN-oe7ABHNb2&sz=w400" alt="साखरपुडा" loading="lazy">
             <span class="card-badge badge-photo">Photos</span>
           </div>
           <div class="card-body">
@@ -1178,9 +1223,10 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
         </a>
         <a class="card" href="https://photos.app.goo.gl/XdCj6PVURabtDuwu9" target="_blank" rel="noopener" onclick="showToast()">
           <div class="card-thumb thumb-reel">
-            <div class="thumb-pattern"></div>
-            <div class="thumb-ring"></div><div class="thumb-ring"></div><div class="thumb-ring"></div>
-            <span class="thumb-icon">🎬</span>
+            <div class="reel-thumb-wrap">
+              <img class="reel-thumb-img" src="https://drive.google.com/thumbnail?id=1pzFPTaWfh823SivNUsyqMXoyqLAsraLH&sz=w400" alt="साखरपुडा रील" loading="lazy">
+            </div>
+            <div class="play-btn"><div class="play-circle"><div class="play-triangle"></div></div></div>
             <span class="card-badge badge-reel">Reel</span>
           </div>
           <div class="card-body">
@@ -1208,8 +1254,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
       <div class="fn-cards">
         <a class="card" href="https://photos.app.goo.gl/dvzvs7VqNvgTTpNo7" target="_blank" rel="noopener" onclick="showToast()">
           <div class="card-thumb thumb-photo">
-            <div class="thumb-pattern"></div>
-            <span class="thumb-icon">📷</span>
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=13cLDRo5XIiOUHLQ3XaBIkxnT-cvUn3Ue&sz=w400" alt="हळद" loading="lazy">
             <span class="card-badge badge-photo">Photos</span>
           </div>
           <div class="card-body">
@@ -1220,9 +1265,10 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
         </a>
         <a class="card" href="https://photos.app.goo.gl/rLqX1FMH8PVK5ddFA" target="_blank" rel="noopener" onclick="showToast()">
           <div class="card-thumb thumb-reel">
-            <div class="thumb-pattern"></div>
-            <div class="thumb-ring"></div><div class="thumb-ring"></div><div class="thumb-ring"></div>
-            <span class="thumb-icon">🎬</span>
+            <div class="reel-thumb-wrap">
+              <img class="reel-thumb-img" src="https://drive.google.com/thumbnail?id=1JohAphyI7kvOITkRQmdj-GDeADTV11mr&sz=w400" alt="हळद रील" loading="lazy">
+            </div>
+            <div class="play-btn"><div class="play-circle"><div class="play-triangle"></div></div></div>
             <span class="card-badge badge-reel">Reel</span>
           </div>
           <div class="card-body">
@@ -1250,8 +1296,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
       <div class="fn-cards">
         <a class="card" href="https://photos.app.goo.gl/QU7JY8cxWj2yQqqu7" target="_blank" rel="noopener" onclick="showToast()">
           <div class="card-thumb thumb-photo">
-            <div class="thumb-pattern"></div>
-            <span class="thumb-icon">📷</span>
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=1DaMBzDQNuVzrYQ18EfNdZ1-NbebZi4P9&sz=w400" alt="संगीत" loading="lazy">
             <span class="card-badge badge-photo">Photos</span>
           </div>
           <div class="card-body">
@@ -1280,8 +1325,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
       <div class="fn-cards">
         <a class="card" href="https://photos.app.goo.gl/6LTjY2HUgrGpeXgp9" target="_blank" rel="noopener" onclick="showToast()">
           <div class="card-thumb thumb-photo" style="background: linear-gradient(145deg, #1e1208, #2e1c0a);">
-            <div class="thumb-pattern"></div>
-            <span class="thumb-icon">💒</span>
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=1a6a04_ujrTzQj-1DhYxtzKf_FTIfAoxU&sz=w400" alt="लग्न" loading="lazy">
             <span class="card-badge badge-photo">Photos</span>
           </div>
           <div class="card-body">
@@ -1309,8 +1353,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
       <div class="fn-cards">
         <a class="card" href="https://photos.app.goo.gl/YBgSvhp44zu3MSvn9" target="_blank" rel="noopener" onclick="showToast()">
           <div class="card-thumb thumb-photo">
-            <div class="thumb-pattern"></div>
-            <span class="thumb-icon">🌸</span>
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=1YDUAYSQKyGV31plNuqZ99VSEUrH1cSpf&sz=w400" alt="बिदाई" loading="lazy">
             <span class="card-badge badge-photo">Photos</span>
           </div>
           <div class="card-body">
@@ -1328,7 +1371,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
         <span class="fn-num">12</span>
         <span class="fn-icon">🏡</span>
         <div class="fn-text">
-          <div class="fn-title">श्रृती अमरावती गृहप्रवेश</div>
+          <div class="fn-title">शृती अमरावती गृहप्रवेश</div>
           <span class="fn-sub">Griha Pravesh · Amravati</span>
         </div>
         <span class="fn-count">1 album</span>
@@ -1338,12 +1381,11 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
       <div class="fn-cards">
         <a class="card" href="https://photos.app.goo.gl/KrqjMoMkr695ZKTR7" target="_blank" rel="noopener" onclick="showToast()">
           <div class="card-thumb thumb-special">
-            <div class="thumb-pattern"></div>
-            <span class="thumb-icon">🏡</span>
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=1QMkG3Oao1SccED9qfsYcUzfKzN7Xl70e&sz=w400" alt="गृहप्रवेश" loading="lazy">
             <span class="card-badge badge-special">Griha Pravesh</span>
           </div>
           <div class="card-body">
-            <div class="card-title">श्रृती अमरावती गृहप्रवेश</div>
+            <div class="card-title">शृती अमरावती गृहप्रवेश</div>
             <span class="card-en">Shruti's Home Welcoming · Amravati</span>
             <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
           </div>
@@ -1367,8 +1409,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
       <div class="fn-cards">
         <a class="card" href="https://photos.app.goo.gl/dBfByL9sWdsvWVSa6" target="_blank" rel="noopener" onclick="showToast()">
           <div class="card-thumb thumb-photo">
-            <div class="thumb-pattern"></div>
-            <span class="thumb-icon">📷</span>
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=1Qd7aZG6-TZM-XJWdqzEqEfFKCX9AaldB&sz=w400" alt="न्हाणोरा" loading="lazy">
             <span class="card-badge badge-photo">Photos</span>
           </div>
           <div class="card-body">
@@ -1396,8 +1437,7 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
       <div class="fn-cards">
         <a class="card" href="https://photos.app.goo.gl/E81E8xcN1UNabG4p9" target="_blank" rel="noopener" onclick="showToast()">
           <div class="card-thumb thumb-special">
-            <div class="thumb-pattern"></div>
-            <span class="thumb-icon">✨</span>
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=1FuDH8r3uzQ-b0J9AGqcjGYqEyiLbi4Pw&sz=w400" alt="Candid" loading="lazy">
             <span class="card-badge badge-candid">Candid</span>
           </div>
           <div class="card-body">
@@ -1412,13 +1452,13 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
   </div><!-- /panel-groom -->
 
   <!-- ══ BRIDE PANEL ══ -->
-  <div class="panel" id="panel-bride">
+  <div class="panel" id="panel-bride" style="display:none">
     <div class="section-intro reveal">
       <div class="s-avatar b">👰</div>
       <div>
         <div class="s-label">Photographer · वधू पक्ष</div>
         <div class="s-name">वधू पक्षाचे फोटो</div>
-        <div class="s-note">श्रृती · Gallery येत आहे · Coming Soon</div>
+        <div class="s-note">शृती · Gallery येत आहे · Coming Soon</div>
       </div>
     </div>
     <div class="coming-soon reveal">
@@ -1444,9 +1484,9 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
     <div class="f-dia"></div>
     <div class="f-line"></div>
   </div>
-  <p class="f-marathi">आपल्या प्रेमाचे आणि आशीर्वादाचे धन्यवाद</p>
+  <p class="f-marathi">आपल्या प्रेमाने आणि आशीर्वादाने धन्यवाद</p>
   <p class="f-en">Thank you for being part of our story</p>
-  <p class="f-date">मिथिलेश & श्रृती · २६ एप्रिल २०२६ · खामगाव · महाराष्ट्र</p>
+  <p class="f-date">मिथिलेश & शृती · २६ एप्रिल २०२६ · खामगाव · महाराष्ट्र</p>
 </footer>
 
 </div><!-- /site -->
@@ -1768,12 +1808,25 @@ function scrollToNav() {
 }
 
 function switchTab(side) {
-  document.getElementById('tab-groom').classList.toggle('active', side === 'groom');
-  document.getElementById('tab-bride').classList.toggle('active', side === 'bride');
-  document.getElementById('panel-groom').classList.toggle('active', side === 'groom');
-  document.getElementById('panel-bride').classList.toggle('active', side === 'bride');
-  const nav = document.querySelector('.nav-wrap');
-  const target = nav ? nav.offsetTop : 0;
+  var tg = document.getElementById('tab-groom');
+  var tb = document.getElementById('tab-bride');
+  var pg = document.getElementById('panel-groom');
+  var pb = document.getElementById('panel-bride');
+
+  if (side === 'groom') {
+    tg.className = 'nav-tab active';
+    tb.className = 'nav-tab';
+    pg.style.setProperty('display', 'block', 'important');
+    pb.style.setProperty('display', 'none',  'important');
+  } else {
+    tb.className = 'nav-tab active';
+    tg.className = 'nav-tab';
+    pb.style.setProperty('display', 'block', 'important');
+    pg.style.setProperty('display', 'none',  'important');
+  }
+
+  var nav = document.querySelector('.nav-wrap');
+  var target = nav ? nav.offsetTop : 0;
   smoothScrollTo(target, 520);
 }
 
