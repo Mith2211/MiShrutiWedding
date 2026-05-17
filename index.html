@@ -27,7 +27,7 @@
   --r: 201; --g: 169; --b: 110; /* for rgba() use */
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: auto; }
 
 body {
   font-family: 'Jost', sans-serif;
@@ -748,6 +748,80 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
   .fn-cards { grid-template-columns: 1fr; }
   .ctrl-bar { flex-wrap: wrap; }
 }
+/* ── DIYA DIVIDER ── */
+.diya-divider {
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 18px 20px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+.diya-divider::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 100% at 50% 50%, rgba(201,169,110,0.06), transparent);
+  pointer-events: none;
+}
+.dd-inner {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+.dd-rule {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.dd-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to left, transparent, rgba(201,169,110,0.3));
+}
+.dd-line.l {
+  background: linear-gradient(to right, transparent, rgba(201,169,110,0.3));
+}
+.dd-text {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-style: italic;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: rgba(201,169,110,0.5);
+  flex-shrink: 0;
+}
+.dd-dots {
+  font-size: 8px;
+  color: rgba(201,169,110,0.3);
+  letter-spacing: 2px;
+  flex-shrink: 0;
+}
+.dd-diyas {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+}
+.dd-d {
+  display: inline-block;
+  animation: diyaFloat 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(220,160,40,0.45));
+  line-height: 1;
+}
+.dd-d.s1 { font-size: 18px; opacity: .45; animation-delay: 0s;    animation-duration: 2.8s; }
+.dd-d.s2 { font-size: 24px; opacity: .70; animation-delay: 0.4s;  animation-duration: 2.4s; }
+.dd-d.s3 { font-size: 32px; opacity: .95; animation-delay: 0.2s;  animation-duration: 2.2s;
+  filter: drop-shadow(0 0 10px rgba(220,160,40,0.65)); }
+@keyframes diyaFloat {
+  0%,100% { transform: translateY(0);    filter: drop-shadow(0 0 6px  rgba(220,160,40,0.40)); }
+  50%      { transform: translateY(-5px); filter: drop-shadow(0 0 14px rgba(220,160,40,0.75)); }
+}
 </style>
 </head>
 <body>
@@ -824,7 +898,28 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
   </div>
 </header>
 
-
+<!-- ─── DIYA DIVIDER ─── -->
+<div class="diya-divider">
+  <div class="dd-inner">
+    <div class="dd-rule">
+      <div class="dd-line l"></div>
+      <span class="dd-text">आठवणी</span>
+      <div class="dd-line"></div>
+    </div>
+    <div class="dd-diyas">
+      <span class="dd-d s1">🪔</span>
+      <span class="dd-d s2">🪔</span>
+      <span class="dd-d s3">🪔</span>
+      <span class="dd-d s2">🪔</span>
+      <span class="dd-d s1">🪔</span>
+    </div>
+    <div class="dd-rule">
+      <div class="dd-line l"></div>
+      <span class="dd-dots">✦ &nbsp; ✦ &nbsp; ✦</span>
+      <div class="dd-line"></div>
+    </div>
+  </div>
+</div>
 
 <!-- ─── NAV ─── -->
 <nav class="nav-wrap">
@@ -1618,6 +1713,23 @@ function switchTab(side) {
   document.getElementById('tab-bride').classList.toggle('active', side === 'bride');
   document.getElementById('panel-groom').classList.toggle('active', side === 'groom');
   document.getElementById('panel-bride').classList.toggle('active', side === 'bride');
+  const nav = document.querySelector('.nav-wrap');
+  const target = nav ? nav.offsetTop : 0;
+  smoothScrollTo(target, 520);
+}
+
+function smoothScrollTo(target, duration) {
+  const start    = window.scrollY;
+  const distance = target - start;
+  const startTime = performance.now();
+  function ease(t) { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2; }
+  function step(now) {
+    const elapsed  = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    window.scrollTo(0, start + distance * ease(progress));
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
 }
 
 /* ══════════════════════════════════
