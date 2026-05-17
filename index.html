@@ -1613,27 +1613,29 @@ document.addEventListener('click', e => {
   /* Small: r 6–10  |  Large: r 11–16 */
   const SMALL_R  = () => 6  + Math.random() * 4;
   const LARGE_R  = () => 11 + Math.random() * 5;
-  const COUNT    = isMobile ? 18 : 26;
+  const COUNT    = isMobile ? 24 : 36;
 
   function makeFlower(randomY) {
-    const isLarge = Math.random() > .62;          /* ~38% large, rest small */
+    const isLarge = Math.random() > .62;
     return {
       x:    Math.random() * W,
-      y:    randomY ? Math.random() * H : -(20 + Math.random() * 50),
-      vy:   isLarge ? .12 + Math.random() * .22   /* large — slow */
-                    : .28 + Math.random() * .48,  /* small — faster */
-      vx:   (Math.random() - .5) * .25,
+      /* always spawn at random y — spread throughout full screen */
+      y:    randomY
+              ? Math.random() * H
+              : -Math.random() * H * .5,   /* top half — staggered entry */
+      vy:   isLarge ? .55 + Math.random() * .5    /* large — medium speed */
+                    : .9  + Math.random() * .8,   /* small — faster */
+      vx:   (Math.random() - .5) * .3,
       rot:  Math.random() * Math.PI * 2,
-      rotV: (Math.random() - .5) * (isLarge ? .005 : .012),
+      rotV: (Math.random() - .5) * (isLarge ? .006 : .014),
       sw:   Math.random() * Math.PI * 2,
-      swS:  .008 + Math.random() * .009,
-      swA:  .25  + Math.random() * .5,
+      swS:  .008 + Math.random() * .01,
+      swA:  .3   + Math.random() * .6,
       r:    isLarge ? LARGE_R() : SMALL_R(),
       type: Math.random() > .45 ? 'marigold' : 'rose',
       alpha:.65 + Math.random() * .30,
       life: 0,
-      maxL: isLarge ? 260 + Math.random() * 160
-                    : 180 + Math.random() * 120,
+      maxL: 300 + Math.random() * 200,
     };
   }
 
@@ -1680,7 +1682,9 @@ document.addEventListener('click', e => {
       f.life++;
 
       if (f.y > H + f.r * 2 || f.life > f.maxL) {
-        Object.assign(f, makeFlower(false));
+        /* respawn at random x, staggered entry from top */
+        const nf = makeFlower(false);
+        Object.assign(f, nf);
       }
 
       const fade = Math.min(1, Math.sin(f.life / f.maxL * Math.PI) * 1.4);
