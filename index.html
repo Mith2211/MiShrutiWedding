@@ -1467,26 +1467,263 @@ a:hover ~ #cursor, .card:hover ~ #cursor { width: 20px; height: 20px; }
 
   <!-- ══ BRIDE PANEL ══ -->
   <div class="panel" id="panel-bride" style="display:none">
+
     <div class="section-intro reveal">
       <div class="s-avatar b">👰</div>
       <div>
         <div class="s-label">Photographer · वधू पक्ष</div>
         <div class="s-name">वधू पक्षाचे फोटो</div>
-        <div class="s-note">श्रृती · Gallery येत आहे · Coming Soon</div>
+        <div class="s-note">श्रृती · Complete Gallery · 6 कार्यक्रम</div>
       </div>
     </div>
-    <div class="coming-soon reveal">
-      <div class="cs-icon">🌸</div>
-      <div class="cs-title">Coming Soon</div>
-      <div class="cs-marathi">लवकरच येईल</div>
-      <p class="cs-text">
-        वधू पक्षाचे सुंदर फोटो आणि रील<br>
-        lovingly curated होत आहेत.<br><br>
-        <span style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);">
-          This space will shine with memories very soon.
-        </span>
-      </p>
+
+    <div class="ctrl-bar reveal">
+      <button class="ctrl-btn" id="expand-btn-bride" onclick="toggleAllBride()">
+        <span id="expand-icon-bride">✦</span>
+        <span id="expand-text-bride">सर्व उघडा</span>
+      </button>
+      <div class="ctrl-line"></div>
+      <span class="ct-badge" id="open-count-bride">0 / 6 उघडे</span>
     </div>
+
+    <!-- ── B01: देवकुंडी आणि मेहेंदी ── -->
+    <div class="fn-block reveal" id="fnb01">
+      <div class="fn-header" onclick="toggleFn('fnb01')">
+        <span class="fn-num">01</span>
+        <span class="fn-icon">🕉️</span>
+        <div class="fn-text">
+          <div class="fn-title">देवकुंडी आणि मेहेंदी</div>
+          <span class="fn-sub">Dev Kundi & Mehndi Ceremony</span>
+        </div>
+        <span class="fn-count">1 album · 1 video</span>
+        <span class="fn-arrow">▾</span>
+      </div>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/imGAknNjWUsi3AaB6" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-photo">
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=1497dcE2-9VbuU8mcH1_U4hRyYZ5fJA8d&sz=w400" alt="देवकुंडी आणि मेहेंदी" loading="lazy">
+            <span class="card-badge badge-photo">Photos</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">देवकुंडी आणि मेहेंदी</div>
+            <span class="card-en">Dev Kundi & Mehndi Photos</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
+          </div>
+        </a>
+        <a class="card" href="https://photos.app.goo.gl/DzQfdTKsRQpwyJYR6" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-reel">
+            <div class="reel-thumb-wrap">
+              <img class="reel-thumb-img" src="https://drive.google.com/thumbnail?id=1FfVSKdC_zifeMle9o2zDhpO4sd5pa1MQ&sz=w400" alt="देवकुंडी मेहेंदी व्हिडिओ" loading="lazy">
+            </div>
+            <div class="play-btn"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            <span class="card-badge badge-reel">Video</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">देवकुंडी मेहेंदी व्हिडिओ</div>
+            <span class="card-en">Dev Kundi & Mehndi Highlights</span>
+            <div class="card-cta">Video पहा <span class="c-arr">→</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── B02: साखरपुडा ── -->
+    <div class="fn-block reveal" id="fnb02">
+      <div class="fn-header" onclick="toggleFn('fnb02')">
+        <span class="fn-num">02</span>
+        <span class="fn-icon">💍</span>
+        <div class="fn-text">
+          <div class="fn-title">साखरपुडा</div>
+          <span class="fn-sub">Engagement Ceremony</span>
+        </div>
+        <span class="fn-count">1 album · 1 video</span>
+        <span class="fn-arrow">▾</span>
+      </div>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/wCD2dUfr7SahdEEB9" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-photo">
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=1TES5EY5xJ8EYoC-fF4ZZUBmBwAKM5kMJ&sz=w400" alt="साखरपुडा" loading="lazy">
+            <span class="card-badge badge-photo">Photos</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">साखरपुडा फोटो</div>
+            <span class="card-en">Engagement Photos</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
+          </div>
+        </a>
+        <a class="card" href="https://photos.app.goo.gl/ZAAyv4KWRX89QPFi8" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-reel">
+            <div class="reel-thumb-wrap">
+              <img class="reel-thumb-img" src="https://drive.google.com/thumbnail?id=1Ey5mPQ0r0hNpHf_HHpOMhQ2_mq7mAwcy&sz=w400" alt="साखरपुडा व्हिडिओ" loading="lazy">
+            </div>
+            <div class="play-btn"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            <span class="card-badge badge-reel">Video</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">साखरपुडा व्हिडिओ</div>
+            <span class="card-en">Engagement Highlights</span>
+            <div class="card-cta">Video पहा <span class="c-arr">→</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── B03: हळद ── -->
+    <div class="fn-block reveal" id="fnb03">
+      <div class="fn-header" onclick="toggleFn('fnb03')">
+        <span class="fn-num">03</span>
+        <span class="fn-icon">🌼</span>
+        <div class="fn-text">
+          <div class="fn-title">हळद</div>
+          <span class="fn-sub">Haldi Ceremony</span>
+        </div>
+        <span class="fn-count">1 album · 1 video</span>
+        <span class="fn-arrow">▾</span>
+      </div>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/3UW6qLeNMuDwdX7TA" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-photo">
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=1fX1mfnKL1K4ZZgmfoUn3tl8byGL7OJRM&sz=w400" alt="हळद" loading="lazy">
+            <span class="card-badge badge-photo">Photos</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">हळद फोटो</div>
+            <span class="card-en">Haldi Ceremony Photos</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
+          </div>
+        </a>
+        <a class="card" href="https://photos.app.goo.gl/JorZXcpDL6pJNeAF8" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-reel">
+            <div class="reel-thumb-wrap">
+              <img class="reel-thumb-img" src="https://drive.google.com/thumbnail?id=1QnjiLkLkxFr_UixROG0nJR9rRLansASa&sz=w400" alt="हळद व्हिडिओ" loading="lazy">
+            </div>
+            <div class="play-btn"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            <span class="card-badge badge-reel">Video</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">हळद व्हिडिओ</div>
+            <span class="card-en">Haldi Highlights</span>
+            <div class="card-cta">Video पहा <span class="c-arr">→</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── B04: संगीत ── -->
+    <div class="fn-block reveal" id="fnb04">
+      <div class="fn-header" onclick="toggleFn('fnb04')">
+        <span class="fn-num">04</span>
+        <span class="fn-icon">🎵</span>
+        <div class="fn-text">
+          <div class="fn-title">संगीत</div>
+          <span class="fn-sub">Sangeet Night</span>
+        </div>
+        <span class="fn-count">1 album · 1 video</span>
+        <span class="fn-arrow">▾</span>
+      </div>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/r5JnfqzT26obhBeX7" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-photo">
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=18jkfy9ik0Zz34XOKV89DZQkolpKlGml5&sz=w400" alt="संगीत" loading="lazy">
+            <span class="card-badge badge-photo">Photos</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">संगीत</div>
+            <span class="card-en">Sangeet Night Photos</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
+          </div>
+        </a>
+        <a class="card" href="https://photos.app.goo.gl/FMzxacz7JpdqwLPq6" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-reel">
+            <div class="reel-thumb-wrap">
+              <img class="reel-thumb-img" src="https://drive.google.com/thumbnail?id=1XP2i5FAe6FWV94l_zZi_BjIKj0dKMuVK&sz=w400" alt="संगीत व्हिडिओ" loading="lazy">
+            </div>
+            <div class="play-btn"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            <span class="card-badge badge-reel">Video</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">संगीत व्हिडिओ</div>
+            <span class="card-en">Sangeet Night Highlights</span>
+            <div class="card-cta">Video पहा <span class="c-arr">→</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── B05: लग्न ── -->
+    <div class="fn-block reveal" id="fnb05">
+      <div class="fn-header" onclick="toggleFn('fnb05')">
+        <span class="fn-num">05</span>
+        <span class="fn-icon">💒</span>
+        <div class="fn-text">
+          <div class="fn-title">लग्न</div>
+          <span class="fn-sub">The Wedding Day · २६ एप्रिल २०२६</span>
+        </div>
+        <span class="fn-count">1 album · 1 video</span>
+        <span class="fn-arrow">▾</span>
+      </div>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/oCcvYwCpmmDoZEEj6" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-photo">
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=1B7NITfvdwycCj0TYP3a2WJSla0eAXcrX&sz=w400" alt="लग्न" loading="lazy">
+            <span class="card-badge badge-photo">Photos</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">लग्न · २६ एप्रिल २०२६</div>
+            <span class="card-en">The Wedding Ceremony</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
+          </div>
+        </a>
+        <a class="card" href="https://photos.app.goo.gl/TxUDDhMoTLrfgTe18" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-reel">
+            <div class="reel-thumb-wrap">
+              <img class="reel-thumb-img" src="https://drive.google.com/thumbnail?id=11eOrY8uWI0P1TkDjMr5hhsyKly0VQgDi&sz=w400" alt="लग्न व्हिडिओ" loading="lazy">
+            </div>
+            <div class="play-btn"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            <span class="card-badge badge-reel">Video</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">लग्न व्हिडिओ</div>
+            <span class="card-en">Wedding Day Highlights</span>
+            <div class="card-cta">Video पहा <span class="c-arr">→</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── B06: फेरे आणि बिदाई ── (Photos only) -->
+    <div class="fn-block reveal" id="fnb06">
+      <div class="fn-header" onclick="toggleFn('fnb06')">
+        <span class="fn-num">06</span>
+        <span class="fn-icon">🌸</span>
+        <div class="fn-text">
+          <div class="fn-title">फेरे आणि बिदाई</div>
+          <span class="fn-sub">Phere & Vidai · Sacred Rounds & Farewell</span>
+        </div>
+        <span class="fn-count">1 album</span>
+        <span class="fn-arrow">▾</span>
+      </div>
+      <div class="fn-sep"></div>
+      <div class="fn-cards">
+        <a class="card" href="https://photos.app.goo.gl/PkvXRtnm8ieHDPj59" target="_blank" rel="noopener" onclick="showToast()">
+          <div class="card-thumb thumb-photo">
+            <img class="thumb-img" src="https://drive.google.com/thumbnail?id=1tBfABisCc_c-2zf7_AQ2Ewp5apib0Iix&sz=w400" alt="फेरे आणि बिदाई" loading="lazy">
+            <span class="card-badge badge-photo">Photos</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">फेरे आणि बिदाई</div>
+            <span class="card-en">Phere & Vidai Photos</span>
+            <div class="card-cta">Album उघडा <span class="c-arr">→</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
   </div>
 
 </main><!-- /main -->
@@ -1785,12 +2022,26 @@ function toggleFn(id) {
   const block = document.getElementById(id);
   const wasOpen = block.classList.contains('open');
   block.classList.toggle('open');
-  openCount += wasOpen ? -1 : 1;
-  updateCount();
+  /* update correct counter */
+  if (id.startsWith('fnb')) {
+    openCountBride += wasOpen ? -1 : 1;
+    updateCountBride();
+  } else {
+    openCount += wasOpen ? -1 : 1;
+    updateCount();
+  }
 }
 function updateCount() {
   const total = document.querySelectorAll('#panel-groom .fn-block').length;
   document.getElementById('open-count').textContent = `${openCount} / ${total} उघडे`;
+}
+
+/* ── Bride side counter ── */
+let openCountBride = 0;
+function updateCountBride() {
+  const total = document.querySelectorAll('#panel-bride .fn-block').length;
+  const el = document.getElementById('open-count-bride');
+  if (el) el.textContent = `${openCountBride} / ${total} उघडे`;
 }
 
 /* ══════════════════════════════════
@@ -1811,6 +2062,20 @@ function toggleAll() {
   document.getElementById('expand-btn').classList.toggle('active-btn', allOpen);
 }
 updateCount();
+
+let allOpenBride = false;
+function toggleAllBride() {
+  allOpenBride = !allOpenBride;
+  const blocks = document.querySelectorAll('#panel-bride .fn-block');
+  blocks.forEach(b => {
+    if (allOpenBride) b.classList.add('open');
+    else b.classList.remove('open');
+  });
+  openCountBride = allOpenBride ? blocks.length : 0;
+  updateCountBride();
+  document.getElementById('expand-text-bride').textContent = allOpenBride ? 'सर्व बंद करा' : 'सर्व उघडा';
+  document.getElementById('expand-icon-bride').textContent = allOpenBride ? '◆' : '✦';
+}
 
 /* ══════════════════════════════════
    TAB SWITCH
